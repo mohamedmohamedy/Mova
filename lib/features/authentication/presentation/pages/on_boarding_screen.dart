@@ -13,7 +13,9 @@ class OnBoardingScreen extends StatelessWidget {
       body: Center(
         child: IconButton(
           onPressed: () {
-            di.sl<SharedPreferences>().remove(StringsManager.userCachedEmailKey);
+            di
+                .sl<SharedPreferences>()
+                .remove(StringsManager.userCachedEmailKey);
             Navigator.of(context).pushNamed(Routes.signUpScreenKey);
           },
           icon: const Icon(Icons.delete),

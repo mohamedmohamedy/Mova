@@ -16,12 +16,11 @@ class VerifyTestScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     log('build');
-    Timer? timer; 
+    Timer? timer;
     bool verified = false;
-    
-    BlocProvider.of<AuthenticationBloc>(context).add(VerifyUserEvent()); 
-   
-   // to check if he user is verified 
+    BlocProvider.of<AuthenticationBloc>(context).add(VerifyUserEvent());
+  
+   // to check if he user is verified
     timer = Timer.periodic(const Duration(seconds: 2), (timer) {
       if (verified) {
         timer.cancel;

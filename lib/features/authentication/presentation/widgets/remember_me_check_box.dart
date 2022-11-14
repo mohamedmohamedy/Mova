@@ -3,18 +3,15 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mova/core/resources/extensions.dart';
-import 'package:mova/core/utils/request_state.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../core/resources/strings_manager.dart';
-import '../../../../core/utils/snack_bar_util.dart';
 import '../bloc/authentication_bloc.dart';
 import '../../../../dependency_container.dart' as di;
 
 class RememberMeCheckBox extends StatefulWidget {
   final TextEditingController emailController;
   const RememberMeCheckBox({super.key, required this.emailController});
-
   @override
   State<RememberMeCheckBox> createState() => _RememberMeCheckBoxState();
 }
@@ -49,17 +46,14 @@ class _RememberMeCheckBoxState extends State<RememberMeCheckBox> {
   @override
   Widget build(BuildContext context) {
     log('build');
-    return
-        //  _isValid
-        //     ?
-        Transform.scale(
+    return Transform.scale(
       scale: 1.1,
       child: Checkbox(
         value: _isValid ? value : null,
         tristate: true,
         onChanged: (value) {
           setState(() {
-            this.value = value!;
+            checkValueForNull(value);
           });
           if (value == true) {
             BlocProvider.of<AuthenticationBloc>(context).add(
@@ -75,15 +69,17 @@ class _RememberMeCheckBoxState extends State<RememberMeCheckBox> {
                   .remove(StringsManager.userCachedEmailKey);
             }
           }
-
-          //___________________________________________________________________________________
         },
       ),
     );
-    // : Icon(
-    //     Icons.disabled_by_default,
-    //     size: 40,
-    //     color: Colors.red,
-    //   );
+  }
+
+  // this method is used to stop the checkBox from returning null value if the E-mail is valid.
+  void checkValueForNull(bool? value) {
+    if (value == null) {
+      this.value = false;
+    } else if (value == false || value == true) {
+      this.value = value;
+    }
   }
 }
