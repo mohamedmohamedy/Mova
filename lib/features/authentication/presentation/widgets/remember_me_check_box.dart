@@ -1,13 +1,6 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mova/core/global/global_varibles.dart';
 import 'package:mova/core/resources/extensions.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
-import '../../../../core/resources/strings_manager.dart';
-import '../bloc/authentication_bloc.dart';
-import '../../../../dependency_container.dart' as di;
 
 class RememberMeCheckBox extends StatefulWidget {
   final TextEditingController emailController;
@@ -19,12 +12,11 @@ class RememberMeCheckBox extends StatefulWidget {
 class _RememberMeCheckBoxState extends State<RememberMeCheckBox> {
   bool value = false;
   bool _isValid = false;
-
+  final globalVariables = GlobalVariables();
   @override
   void dispose() {
     super.dispose();
     widget.emailController.removeListener(() {
-      log('cleared');
     });
     widget.emailController.dispose();
   }
@@ -45,7 +37,6 @@ class _RememberMeCheckBoxState extends State<RememberMeCheckBox> {
 
   @override
   Widget build(BuildContext context) {
-    log('build');
     return Transform.scale(
       scale: 1.1,
       child: Checkbox(
@@ -56,18 +47,10 @@ class _RememberMeCheckBoxState extends State<RememberMeCheckBox> {
             checkValueForNull(value);
           });
           if (value == true) {
-            BlocProvider.of<AuthenticationBloc>(context).add(
-                CacheUserDataEvent(userEmail: widget.emailController.text));
+            globalVariables.setUserDecision = true;
           }
-          //______________________/ to be changed with clean arch \__________________________
           if (value == false) {
-            if (di
-                .sl<SharedPreferences>()
-                .containsKey(StringsManager.userCachedEmailKey)) {
-              di
-                  .sl<SharedPreferences>()
-                  .remove(StringsManager.userCachedEmailKey);
-            }
+            globalVariables.setUserDecision = false;
           }
         },
       ),

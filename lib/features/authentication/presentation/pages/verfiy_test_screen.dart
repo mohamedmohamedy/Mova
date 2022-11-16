@@ -1,11 +1,10 @@
 import 'dart:async';
 import 'dart:developer';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mova/core/global/global_varibles.dart';
 import 'package:mova/core/resources/routes.dart';
 import 'package:mova/core/utils/loading_indicator_util.dart';
-import 'package:mova/features/authentication/presentation/pages/on_boarding_screen.dart';
 import '../../../../core/utils/request_state.dart';
 import '../../../../core/utils/snack_bar_util.dart';
 import '../bloc/authentication_bloc.dart';
@@ -19,8 +18,8 @@ class VerifyTestScreen extends StatelessWidget {
     Timer? timer;
     bool verified = false;
     BlocProvider.of<AuthenticationBloc>(context).add(VerifyUserEvent());
-  
-   // to check if he user is verified
+    final globalVariables = GlobalVariables();
+    // to check if he user is verified
     timer = Timer.periodic(const Duration(seconds: 2), (timer) {
       if (verified) {
         timer.cancel;
@@ -43,6 +42,11 @@ class VerifyTestScreen extends StatelessWidget {
             case true:
               verified = true;
               timer?.cancel();
+              if (globalVariables.getUserDecision) {
+                BlocProvider.of<AuthenticationBloc>(context).add(
+                  CacheUserDataEvent(userEmail: globalVariables.getGlobalUserEmail),
+                );
+              }
               Navigator.of(context)
                   .pushReplacementNamed(Routes.onBoardingScreenKey);
               break;
