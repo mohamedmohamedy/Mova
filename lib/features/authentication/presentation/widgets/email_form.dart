@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mova/core/global/global_varibles.dart';
 import 'package:mova/core/resources/extensions.dart';
 import 'package:mova/core/resources/fonts_manager.dart';
 import 'package:mova/core/resources/styles_manager.dart';
@@ -16,6 +17,7 @@ class EmailForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final globalVariables = GlobalVariables();
     return TextFormField(
       controller: emailController,
       style: getRegularStyle(
@@ -32,6 +34,7 @@ class EmailForm extends StatelessWidget {
         return null;
       },
       onSaved: (_) {
+        globalVariables.setGlobalUserEmail = emailController.text;
         emailController.clear();
         emailController.dispose();
       },

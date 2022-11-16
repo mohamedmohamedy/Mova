@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get_it/get_it.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
+import 'package:mova/core/global/global_varibles.dart';
 import 'package:mova/core/network/network_info.dart';
 import 'package:mova/features/authentication/data/datasources/authentication_data_source.dart';
 import 'package:mova/features/authentication/data/datasources/authentication_local_data_source.dart';
@@ -20,7 +21,8 @@ final sl = GetIt.instance;
 
 Future<void> init() async {
   /// BLoC
-  sl.registerFactory(() => AuthenticationBloc(sl(), sl(), sl(), sl(), sl(), sl()));
+  sl.registerFactory(
+      () => AuthenticationBloc(sl(), sl(), sl(), sl(), sl(), sl()));
 
   /// Use cases
   sl.registerLazySingleton(() => SignInUseCase(sl()));
