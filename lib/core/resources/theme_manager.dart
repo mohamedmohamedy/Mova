@@ -108,7 +108,7 @@ ThemeData getApplicationDarkTheme() {
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
         shape: const StadiumBorder(),
-        minimumSize: const Size(double.infinity, DoubleManager.d_50),
+        minimumSize: const Size(double.infinity, DoubleManager.d_45),
         textStyle: getSemiBoldStyle(
             fontName: FontsName.generalFont, fontSize: DoubleManager.d_16),
       ),
