@@ -11,5 +11,8 @@ class StringsManager {
     static  const String passwordLengthValidationMessage = 'password shouldn\'t be less than 6 characters';
     static  const String email = 'Email';
     static  const String password = 'Password';
+    static  const String rememberMe = 'Remember me';
+    static  const String signIn = 'Sign in';
+    static  const String signUp = 'Sign up';
 
 }

@@ -1,7 +1,6 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mova/core/resources/strings_manager.dart';
 import 'package:mova/core/utils/snack_bar_util.dart';
 import 'package:mova/features/authentication/presentation/bloc/authentication_bloc.dart';
 import 'package:mova/features/authentication/presentation/widgets/sign_form.dart';
@@ -46,7 +45,7 @@ class SignUpScreen extends StatelessWidget {
           },
           child: Column(
             children: [
-              SignForm(signEvent: signEvent),
+              SignForm(signEvent: signEvent, buttonText: StringsManager.signUp),
             ],
           ),
         ),
