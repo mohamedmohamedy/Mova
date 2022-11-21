@@ -44,11 +44,11 @@ ThemeData getApplicationDarkTheme() {
           fontName: FontsName.detailsFont, fontSize: FontsSize.s12),
 
       // General Font
-      headlineSmall: getLightStyle(
-          fontName: FontsName.generalFont, fontSize: FontsSize.s12),
-      headlineMedium: getMediumStyle(
+      headlineSmall: getRegularStyle(
+          fontName: FontsName.generalFont, fontSize: FontsSize.s16),
+      headlineMedium: getSemiBoldStyle(
           fontName: FontsName.generalFont, fontSize: FontsSize.s14),
-      headlineLarge: getRegularStyle(
+      headlineLarge: getBoldStyle(
           fontName: FontsName.generalFont, fontSize: FontsSize.s16),
     ),
 
@@ -95,12 +95,23 @@ ThemeData getApplicationDarkTheme() {
 
     // Checkbox
     checkboxTheme: CheckboxThemeData(
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(DoubleManager.d_5)),
-        side: const BorderSide(
-          style: BorderStyle.solid,
-          color: ColorsManager.swatchRed,
-          width: DoubleManager.d_2,
-        )),
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(DoubleManager.d_5)),
+      side: const BorderSide(
+        style: BorderStyle.solid,
+        color: ColorsManager.swatchRed,
+        width: DoubleManager.d_2,
+      ),
+    ),
+
+    // Buttons
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ElevatedButton.styleFrom(
+        shape: const StadiumBorder(),
+        minimumSize: const Size(double.infinity, DoubleManager.d_50),
+        textStyle: getSemiBoldStyle(
+            fontName: FontsName.generalFont, fontSize: DoubleManager.d_16),
+      ),
+    ),
   );
 }

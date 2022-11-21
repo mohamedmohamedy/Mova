@@ -10,6 +10,7 @@ class DoubleManager {
   static const double d_20 = 20;
   static const double d_22 = 22;
   static const double d_24 = 24;
+  static const double d_50 = 50;
   static const double d_70 = 70;
 }
 

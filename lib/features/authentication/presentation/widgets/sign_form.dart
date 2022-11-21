@@ -3,15 +3,18 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mova/core/global/type_def.dart';
 import 'package:mova/core/resources/values_manager.dart';
 import 'package:mova/features/authentication/presentation/widgets/password_form.dart';
-import 'package:mova/features/authentication/presentation/widgets/remember_me_check_box.dart';
+import 'package:mova/features/authentication/presentation/widgets/remember_me_row.dart';
+import '../../../../core/utils/general_button.dart';
 import '../bloc/authentication_bloc.dart';
 import 'email_form.dart';
 
 class SignForm extends StatelessWidget {
   final AuthenticationEventFunction signEvent;
+  final String buttonText;
   const SignForm({
     Key? key,
     required this.signEvent,
+    required this.buttonText,
   }) : super(key: key);
 
   @override
@@ -34,11 +37,8 @@ class SignForm extends StatelessWidget {
           EmailForm(emailController: emailController),
           const SizedBox(height: DoubleManager.d_12),
           PasswordForm(passwordController: passwordController),
-          RememberMeCheckBox(emailController: emailController),
-          ElevatedButton(
-            onPressed: () => saveForm(),
-            child: const Text('save'),
-          ),
+          RememberMeRow(emailController: emailController),
+          GeneralButton(buttonText: buttonText, function: saveForm),
         ],
       ),
     );
