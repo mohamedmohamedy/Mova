@@ -5,7 +5,6 @@ import 'package:mova/core/resources/fonts_manager.dart';
 import 'package:mova/core/resources/styles_manager.dart';
 
 import '../../../../core/resources/strings_manager.dart';
-import '../../../../core/resources/values_manager.dart';
 
 class EmailForm extends StatelessWidget {
   const EmailForm({
@@ -21,7 +20,7 @@ class EmailForm extends StatelessWidget {
     return TextFormField(
       controller: emailController,
       style: getRegularStyle(
-          fontName: FontsName.generalFont, fontSize: DoubleManager.d_16),
+          fontName: FontsName.generalFont, fontSize: FontsSize.s16),
       decoration: InputDecoration(
         prefixIcon: Icon(Icons.email, size: Theme.of(context).iconTheme.size),
         hintText: StringsManager.email,
