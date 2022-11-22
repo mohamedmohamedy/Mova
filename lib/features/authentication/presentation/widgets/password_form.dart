@@ -24,7 +24,7 @@ class _PasswordFormState extends State<PasswordForm> {
   Widget build(BuildContext context) {
     return TextFormField(
       style: getRegularStyle(
-          fontName: FontsName.generalFont, fontSize: DoubleManager.d_16),
+          fontName: FontsName.generalFont, fontSize: FontsSize.s16),
       decoration: InputDecoration(
         hintText: StringsManager.password,
         prefixIcon: Icon(Icons.lock, size: Theme.of(context).iconTheme.size),

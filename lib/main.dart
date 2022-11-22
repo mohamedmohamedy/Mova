@@ -7,6 +7,7 @@ import 'package:mova/core/resources/theme_manager.dart';
 import 'package:mova/features/authentication/presentation/bloc/authentication_bloc.dart';
 import 'package:mova/features/authentication/presentation/pages/splash_screen.dart';
 import 'dependency_container.dart' as di;
+import 'package:sizer/sizer.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -27,14 +28,16 @@ class MyApp extends StatelessWidget {
           create: (_) => di.sl<AuthenticationBloc>(),
         ),
       ],
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Mova',
-        themeMode: ThemeMode.dark,
-        // theme: ThemeData.dark(),
-        darkTheme: getApplicationDarkTheme(),
-        home: const SplashScreen(),
-        routes: Routes.routes,
+      child: Sizer(
+        builder: (context, orientation, deviceType) => MaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: 'Mova',
+          themeMode: ThemeMode.dark,
+          // theme: ThemeData.dark(),
+          darkTheme: getApplicationDarkTheme(),
+          home: const SplashScreen(),
+          routes: Routes.routes,
+        ),
       ),
     );
   }

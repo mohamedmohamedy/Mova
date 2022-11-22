@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mova/core/resources/fonts_manager.dart';
 import 'package:mova/core/resources/strings_manager.dart';
 import 'package:mova/features/authentication/presentation/widgets/remember_me_check_box.dart';
 
@@ -14,7 +15,9 @@ class RememberMeRow extends StatelessWidget {
         RememberMeCheckBox(emailController: emailController),
         Text(
           StringsManager.rememberMe,
-          style: Theme.of(context).textTheme.headlineMedium,
+          style: Theme.of(context).textTheme.headlineMedium!.copyWith(
+                fontSize: FontsSize.s12,
+              ),
         ),
       ],
     );

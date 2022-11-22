@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mova/core/resources/colors_manager.dart';
+import 'package:mova/core/resources/values_manager.dart';
 import 'fonts_manager.dart';
 
 TextStyle _getTextStyle(
@@ -13,7 +14,7 @@ TextStyle _getTextStyle(
 }
 
 TextStyle getLightStyle({
-  double fontSize = FontsSize.s12,
+  double fontSize = DoubleManager.d_2,
   Color color = ColorsManager.mainWhiteColor,
   required String fontName,
 }) {
@@ -21,7 +22,7 @@ TextStyle getLightStyle({
 }
 
 TextStyle getRegularStyle({
-  double fontSize = FontsSize.s12,
+  double fontSize = DoubleManager.d_2,
   Color color = ColorsManager.mainWhiteColor,
   required String fontName,
 }) {
@@ -29,7 +30,7 @@ TextStyle getRegularStyle({
 }
 
 TextStyle getMediumStyle({
-  double fontSize = FontsSize.s12,
+  double fontSize = DoubleManager.d_2,
   Color color = ColorsManager.mainWhiteColor,
   required String fontName,
 }) {
@@ -37,7 +38,7 @@ TextStyle getMediumStyle({
 }
 
 TextStyle getSemiBoldStyle({
-  double fontSize = FontsSize.s12,
+  double fontSize = DoubleManager.d_2,
   Color color = ColorsManager.mainWhiteColor,
   required String fontName,
 }) {
@@ -45,7 +46,7 @@ TextStyle getSemiBoldStyle({
 }
 
 TextStyle getBoldStyle({
-  double fontSize = FontsSize.s12,
+  double fontSize = DoubleManager.d_2,
   Color color = ColorsManager.mainWhiteColor,
   required String fontName,
 }) {

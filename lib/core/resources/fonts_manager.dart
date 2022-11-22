@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:mova/core/resources/values_manager.dart';
+import 'package:sizer/sizer.dart';
 
 class FontsName {
   static const String generalFont = 'Cairo';
@@ -15,10 +17,11 @@ class FontsWeightManager {
 }
 
 class FontsSize {
-  static const double s12 = 12.0;
-  static const double s14 = 14.0;
-  static const double s16 = 16.0;
-  static const double s18 = 18.0;
-  static const double s20 = 20.0;
-  static const double s22 = 22.0;
+  static  double s12 = DoubleManager.d_12.sp;
+  static  double s14 = DoubleManager.d_14.sp;
+  static  double s16 = DoubleManager.d_16.sp;
+  static  double s18 = DoubleManager.d_18.sp;
+  static  double s20 = DoubleManager.d_20.sp;
+  static  double s22 = DoubleManager.d_22.sp;
+  static  double s25 = DoubleManager.d_25.sp;
 }
