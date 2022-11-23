@@ -17,11 +17,11 @@ class FontsWeightManager {
 }
 
 class FontsSize {
-  static  double s12 = DoubleManager.d_12.sp;
-  static  double s14 = DoubleManager.d_14.sp;
-  static  double s16 = DoubleManager.d_16.sp;
-  static  double s18 = DoubleManager.d_18.sp;
-  static  double s20 = DoubleManager.d_20.sp;
-  static  double s22 = DoubleManager.d_22.sp;
-  static  double s25 = DoubleManager.d_25.sp;
+  static double s12 = DoubleManager.d_12.sp;
+  static double s14 = DoubleManager.d_14.sp;
+  static double s16 = DoubleManager.d_16.sp;
+  static double s18 = DoubleManager.d_18.sp;
+  static double s20 = DoubleManager.d_20.sp;
+  static double s22 = DoubleManager.d_22.sp;
+  static double s25 = DoubleManager.d_25.sp;
 }

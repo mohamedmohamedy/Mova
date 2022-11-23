@@ -17,7 +17,7 @@ class Routes {
       splashScreenKey: (context) => const SplashScreen(),
       onBoardingScreenKey: (context) => const OnBoardingScreen(),
       signUpScreenKey: (context) => const SignUpScreen(),
-      verificationScreenKey:(context) => const VerifyTestScreen(),
+      verificationScreenKey: (context) => const VerifyTestScreen(),
     };
   }
 }

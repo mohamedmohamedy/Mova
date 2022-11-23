@@ -31,7 +31,8 @@ class _SplashScreenState extends State<SplashScreen> {
             Navigator.of(context).pushReplacementNamed(Routes.signUpScreenKey);
           }
           if (state.getCacheUserDataState == RequestState.success) {
-            Navigator.of(context).pushReplacementNamed(Routes.onBoardingScreenKey);
+            Navigator.of(context)
+                .pushReplacementNamed(Routes.onBoardingScreenKey);
           }
         },
         child: Column(

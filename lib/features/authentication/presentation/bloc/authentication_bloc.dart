@@ -11,6 +11,7 @@ import 'package:mova/features/authentication/domain/usecases/get_cached_user_use
 import 'package:mova/features/authentication/domain/usecases/sign_in_use_case.dart';
 import 'package:mova/features/authentication/domain/usecases/sign_out_use_case.dart';
 import 'package:mova/features/authentication/domain/usecases/sign_up_use_case.dart';
+import 'package:mova/features/authentication/domain/usecases/sign_with_facebook_use_case.dart';
 import 'package:mova/features/authentication/domain/usecases/verify_user_use_case.dart';
 
 part 'authentication_event.dart';
@@ -21,12 +22,13 @@ class AuthenticationBloc
   final SignInUseCase signIn;
   final SignUpUseCase signUp;
   final SignOutUseCase signOut;
+  final SignWithFacebookUseCase signWithFacebook;
   final VerifyUserUseCase verifyUser;
   final CacheUserUseCase _cacheUser;
   final GetCachedUserUseCase _getCachedUser;
 
   AuthenticationBloc(this.signIn, this.signUp, this.signOut, this.verifyUser,
-      this._cacheUser, this._getCachedUser)
+      this._cacheUser, this._getCachedUser, this.signWithFacebook)
       : super(const AuthenticationState()) {
     on<SignInEvent>(_signIn);
     on<SignUpEvent>(_signUp);
@@ -34,6 +36,7 @@ class AuthenticationBloc
     on<VerifyUserEvent>(_verifyUser);
     on<CacheUserDataEvent>(_cacheUserMethod);
     on<GetCachedUserDataEvent>(_getCachedUserMethod);
+    on<SignWithFacebookEvent>(_signWithFacebook);
   }
   //__________________________Sign in event_______________________________________
   FutureOr<void> _signIn(
@@ -82,6 +85,24 @@ class AuthenticationBloc
       ),
       (_) => emit(state.copyWith(
         signOutState: RequestState.success,
+      )),
+    );
+  }
+
+  //__________________________Get cache user data event_______________________________________
+  FutureOr<void> _signWithFacebook(
+      SignWithFacebookEvent event, Emitter<AuthenticationState> emit) async {
+    emit(state.copyWith(facebookSignState: RequestState.loading));
+    final result = await signWithFacebook(const NoParameters());
+
+    result.fold(
+      (failure) => emit(state.copyWith(
+        facebookSignState: RequestState.error,
+        facebookSignMessage: failure.errorMessage,
+      )),
+      (userData) => emit(state.copyWith(
+        facebookSignState: RequestState.success,
+        facebookUserData: userData,
       )),
     );
   }

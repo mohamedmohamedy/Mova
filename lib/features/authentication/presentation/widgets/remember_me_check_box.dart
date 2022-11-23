@@ -16,8 +16,7 @@ class _RememberMeCheckBoxState extends State<RememberMeCheckBox> {
   @override
   void dispose() {
     super.dispose();
-    widget.emailController.removeListener(() {
-    });
+    widget.emailController.removeListener(() {});
     widget.emailController.dispose();
   }
 

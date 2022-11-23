@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:mova/core/resources/strings_manager.dart';
 import 'package:mova/core/network/exceptions.dart';
@@ -53,6 +52,27 @@ class AuthenticationRepository implements BaseAuthenticationRepository {
               errorMessage:
                   error.message ?? StringsManager.serverFailureMessage),
         );
+      }
+    } else {
+      return const Left(
+          OfflineFailure(errorMessage: StringsManager.offlineFailureMessage));
+    }
+  }
+
+  //__________________________________Sign with Facebook__________________________________
+  @override
+  Future<Either<Failure, UserEntity>> signWithFacebook() async {
+    if (await deviceStatus.isConnected) {
+      try {
+        final response = await dataSource.signWithFacebook();
+        return Right(response);
+      } on FirebaseAuthException catch (error) {
+        return Left(ServerFailure(
+            errorMessage:
+                error.message ?? StringsManager.serverFailureMessage));
+      } catch (error) {
+        return const Left(
+            ServerFailure(errorMessage: StringsManager.serverFailureMessage));
       }
     } else {
       return const Left(

@@ -1,40 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:mova/core/resources/colors_manager.dart';
-import 'package:mova/core/resources/values_manager.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sizer/sizer.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class SocialSignWidget extends StatelessWidget {
-  const SocialSignWidget({super.key});
+import '../../../../core/resources/colors_manager.dart';
+import '../../../../core/resources/values_manager.dart';
+import '../bloc/authentication_bloc.dart';
 
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: DoubleManager.d_10.w),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: const [
-          AuthWidget(authIcon: FontAwesomeIcons.facebook),
-          AuthWidget(authIcon: FontAwesomeIcons.google),
-          AuthWidget(authIcon: FontAwesomeIcons.apple),
-        ],
-      ),
-    );
-  }
-}
-
-class AuthWidget extends StatelessWidget {
+class SocialSignComponent extends StatelessWidget {
   final IconData authIcon;
-  const AuthWidget({
+  final AuthenticationEvent signEvent;
+  const SocialSignComponent({
     Key? key,
     required this.authIcon,
+    required this.signEvent,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       borderRadius: BorderRadius.circular(DoubleManager.d_12.sp),
-      onTap: () {},
+      onTap: () => BlocProvider.of<AuthenticationBloc>(context).add(signEvent),
       child: Stack(children: [
         Container(
           height: DoubleManager.d_7.h,
