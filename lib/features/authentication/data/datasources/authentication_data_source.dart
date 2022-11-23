@@ -53,12 +53,12 @@ class AuthenticationDataSource implements BaseAuthenticationDataSource {
       email: userDataConverted.email!,
       password: userDataConverted.name!,
     );
-   
+
     final OAuthCredential credential =
         FacebookAuthProvider.credential(result.accessToken!.token);
     await FirebaseAuth.instance.signInWithCredential(credential);
-   
-    return userModel;
+
+    return Future.value(userModel);
   }
 
   //_______________________________Verify User__________________________________
@@ -67,8 +67,8 @@ class AuthenticationDataSource implements BaseAuthenticationDataSource {
     final user = FirebaseAuth.instance.currentUser!;
     await user.reload();
     if (user.emailVerified) {
-      return true;
+      return  Future.value(true) ;
     }
-    return false;
+    return Future.value(false);
   }
 }

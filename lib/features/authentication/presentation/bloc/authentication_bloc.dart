@@ -89,7 +89,7 @@ class AuthenticationBloc
     );
   }
 
-  //__________________________Get cache user data event_______________________________________
+  //__________________________Sign with Facebook event__________________________________
   FutureOr<void> _signWithFacebook(
       SignWithFacebookEvent event, Emitter<AuthenticationState> emit) async {
     emit(state.copyWith(facebookSignState: RequestState.loading));
@@ -124,7 +124,7 @@ class AuthenticationBloc
     );
   }
 
-  //__________________________Cache user data event_______________________________________
+  //__________________________Cache user data event______________________________________
   FutureOr<void> _cacheUserMethod(
       CacheUserDataEvent event, Emitter<AuthenticationState> emit) async {
     final result = await _cacheUser(event.userEmail);
@@ -140,7 +140,7 @@ class AuthenticationBloc
     );
   }
 
-  //__________________________Get cache user data event_______________________________________
+  //__________________________Get cache user data event____________________________________
   FutureOr<void> _getCachedUserMethod(
       GetCachedUserDataEvent event, Emitter<AuthenticationState> emit) async {
     final result = await _getCachedUser(const NoParameters());
