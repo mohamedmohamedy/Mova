@@ -5,7 +5,7 @@ import 'package:mova/core/resources/values_manager.dart';
 import 'package:mova/core/utils/snack_bar_util.dart';
 import 'package:mova/features/authentication/presentation/bloc/authentication_bloc.dart';
 import 'package:mova/features/authentication/presentation/widgets/authentication_divider.dart';
-import 'package:mova/features/authentication/presentation/widgets/facebook_sign_widget.dart';
+import 'package:mova/features/authentication/presentation/widgets/social_sign_widget.dart';
 import 'package:mova/features/authentication/presentation/widgets/have_account_widget.dart';
 import 'package:mova/features/authentication/presentation/widgets/sign_form.dart';
 import '../../../../core/resources/routes.dart';
@@ -52,17 +52,25 @@ class SignUpScreen extends StatelessWidget {
           },
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: DoubleManager.d_16),
-            child: Column(
-              children: [
-                const MainLogo(),
-                const SignTypeText(signSentence: StringsManager.create),
-                SignForm(
-                    signEvent: signEvent, buttonText: StringsManager.signUp),
-                const Spacer(),
-                const AuthenticationDivider(),
-                const SocialSignWidget(),
-                const HaveAccountWidget(),
+            child: CustomScrollView(
+              slivers: [
+                SliverFillRemaining(
+                  hasScrollBody: false,
+                child: Column(
+                children: [
+                  const MainLogo(),
+                  const SignTypeText(signSentence: StringsManager.create),
+                  SignForm(
+                      signEvent: signEvent, buttonText: StringsManager.signUp),
+                  const Spacer(),
+                  const AuthenticationDivider(),
+                  const SocialSignWidget(),
+                  const HaveAccountWidget(),
+                ],
+              ),
+                ),
               ],
+              
             ),
           ),
         ),

@@ -12,6 +12,7 @@ class DoubleManager {
   static const double d_10 = 10;
   static const double d_12 = 12;
   static const double d_14 = 14;
+  static const double d_15 = 15;
   static const double d_16 = 16;
   static const double d_18 = 18;
   static const double d_20 = 20;

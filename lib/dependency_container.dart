@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:get_it/get_it.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:mova/core/global/global_varibles.dart';
@@ -10,6 +11,7 @@ import 'package:mova/features/authentication/domain/repositories/base_authentica
 import 'package:mova/features/authentication/domain/usecases/cache_user_use_case.dart';
 import 'package:mova/features/authentication/domain/usecases/get_cached_user_use_case.dart';
 import 'package:mova/features/authentication/domain/usecases/sign_in_use_case.dart';
+import 'package:mova/features/authentication/domain/usecases/sign_with_facebook_use_case.dart';
 import 'package:mova/features/authentication/presentation/bloc/authentication_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -22,7 +24,7 @@ final sl = GetIt.instance;
 Future<void> init() async {
   /// BLoC
   sl.registerFactory(
-      () => AuthenticationBloc(sl(), sl(), sl(), sl(), sl(), sl()));
+      () => AuthenticationBloc(sl(), sl(), sl(), sl(), sl(), sl(), sl()));
 
   /// Use cases
   sl.registerLazySingleton(() => SignInUseCase(sl()));
@@ -31,6 +33,7 @@ Future<void> init() async {
   sl.registerLazySingleton(() => VerifyUserUseCase(sl()));
   sl.registerLazySingleton(() => CacheUserUseCase(sl()));
   sl.registerLazySingleton(() => GetCachedUserUseCase(sl()));
+  sl.registerLazySingleton(() => SignWithFacebookUseCase(sl()));
 
   /// Repository
   sl.registerLazySingleton<BaseAuthenticationRepository>(
@@ -43,6 +46,7 @@ Future<void> init() async {
 
   /// External
   sl.registerLazySingleton(() => FirebaseAuth);
+  // sl.registerLazySingleton(() => FacebookAuth);
   sl.registerLazySingleton(() => InternetConnectionChecker());
   sl.registerLazySingleton<BaseNetworkInfo>(() => NetworkInfo(sl()));
   final sharedPreferences = await SharedPreferences.getInstance();

@@ -7,12 +7,20 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1073741431462:android:d2829b3c866ec140e3ea67",
+        "mobilesdk_app_id": "1:1073741431462:android:c530f6370bab25d7e3ea67",
         "android_client_info": {
-          "package_name": "com.example.mova"
+          "package_name": "com.mohamedy.mova"
         }
       },
       "oauth_client": [
+        {
+          "client_id": "1073741431462-9l6tqcv7jffg9e6q8vh8n75vhrp5v5iq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mohamedy.mova",
+            "certificate_hash": "978d3cbb57c224bada0475666c84c610407b25de"
+          }
+        },
         {
           "client_id": "1073741431462-ktrfc49vvt6hju5bmuuo3v3iuj7bph5k.apps.googleusercontent.com",
           "client_type": 3

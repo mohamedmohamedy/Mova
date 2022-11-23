@@ -9,27 +9,26 @@ abstract class Failure extends Equatable {
   List<Object> get props => [errorMessage];
 }
 
-class ServerFailure extends Failure{
- const  ServerFailure({required super.errorMessage});
+class ServerFailure extends Failure {
+  const ServerFailure({required super.errorMessage});
   @override
   List<Object> get props => [errorMessage];
 }
 
-class OfflineFailure extends Failure{
+class OfflineFailure extends Failure {
   const OfflineFailure({required super.errorMessage});
-   @override
+  @override
   List<Object> get props => [errorMessage];
-
 }
-class EmptyCacheFailure extends Failure{
+
+class EmptyCacheFailure extends Failure {
   const EmptyCacheFailure({required super.errorMessage});
-   @override
+  @override
   List<Object> get props => [errorMessage];
-
 }
-class UnknownCachingFailure extends Failure{
-  const UnknownCachingFailure({required super.errorMessage});
-   @override
-  List<Object> get props => [errorMessage];
 
+class UnknownCachingFailure extends Failure {
+  const UnknownCachingFailure({required super.errorMessage});
+  @override
+  List<Object> get props => [errorMessage];
 }

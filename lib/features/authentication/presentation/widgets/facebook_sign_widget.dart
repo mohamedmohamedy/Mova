@@ -1,61 +1,48 @@
 import 'package:flutter/material.dart';
-import 'package:mova/core/resources/colors_manager.dart';
-import 'package:mova/core/resources/values_manager.dart';
-import 'package:sizer/sizer.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class SocialSignWidget extends StatelessWidget {
-  const SocialSignWidget({super.key});
+import '../../../../core/resources/colors_manager.dart';
+import '../../../../core/resources/routes.dart';
+import '../../../../core/utils/loading_indicator_util.dart';
+import '../../../../core/utils/request_state.dart';
+import '../../../../core/utils/snack_bar_util.dart';
+import '../bloc/authentication_bloc.dart';
 
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: DoubleManager.d_10.w),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: const [
-          AuthWidget(authIcon: FontAwesomeIcons.facebook),
-          AuthWidget(authIcon: FontAwesomeIcons.google),
-          AuthWidget(authIcon: FontAwesomeIcons.apple),
-        ],
-      ),
-    );
-  }
-}
-
-class AuthWidget extends StatelessWidget {
-  final IconData authIcon;
-  const AuthWidget({
-    Key? key,
-    required this.authIcon,
-  }) : super(key: key);
+class FacebookSignWidget extends StatelessWidget {
+  final Widget facebookSignView;
+  const FacebookSignWidget({super.key, required this.facebookSignView});
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      borderRadius: BorderRadius.circular(DoubleManager.d_12.sp),
-      onTap: () {},
-      child: Stack(children: [
-        Container(
-          height: DoubleManager.d_7.h,
-          width: DoubleManager.d_18.w,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(DoubleManager.d_12.sp),
-            color: ColorsManager.tffBackground,
-          ),
-          child: Center(
-            child: Icon(authIcon),
-          ),
-        ),
-        Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(DoubleManager.d_12.sp),
-            color: Colors.white.withOpacity(DoubleManager.d_003),
-          ),
-          height: DoubleManager.d_7.h,
-          width: DoubleManager.d_18.w,
-        )
-      ]),
+    return BlocConsumer<AuthenticationBloc, AuthenticationState>(
+      listenWhen: (previous, current) =>
+          previous.facebookSignState != current.facebookSignState,
+      listener: (context, state) {
+        if (state.facebookSignState == RequestState.error) {
+          return SnackBarUtil().getSnackBar(
+              context: context,
+              message: state.facebookSignMessage,
+              color: ColorsManager.mainRedColor);
+        }
+        if (state.facebookSignState == RequestState.success) {
+          BlocProvider.of<AuthenticationBloc>(context).add(
+            CacheUserDataEvent(userEmail: state.facebookUserData.email),
+          );
+          Navigator.of(context)
+              .pushReplacementNamed(Routes.onBoardingScreenKey);
+        }
+      },
+      buildWhen: (previous, current) =>
+          previous.facebookSignState != current.facebookSignState,
+      builder: (context, state) {
+        if (state.facebookSignState == RequestState.stable) {
+          return facebookSignView;
+        }
+        if (state.facebookSignState == RequestState.loading) {
+          return const LoadingIndicatorUtil();
+        }
+        return const SizedBox();
+      },
     );
   }
 }

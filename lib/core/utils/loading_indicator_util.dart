@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:loading_indicator/loading_indicator.dart';
 import 'package:mova/core/resources/values_manager.dart';
-
+import 'package:sizer/sizer.dart';
 import '../resources/colors_manager.dart';
 
 class LoadingIndicatorUtil extends StatelessWidget {
@@ -11,11 +11,11 @@ class LoadingIndicatorUtil extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
+    return  Center(
       child: SizedBox(
-        height: DoubleManager.d_70,
-        width: DoubleManager.d_70,
-        child: LoadingIndicator(
+        height: DoubleManager.d_15.h,
+        width: DoubleManager.d_15.w,
+        child: const LoadingIndicator(
             indicatorType: Indicator.ballSpinFadeLoader,
             colors: [ColorsManager.mainRedColor]),
       ),

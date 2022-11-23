@@ -44,7 +44,8 @@ class VerifyTestScreen extends StatelessWidget {
               timer?.cancel();
               if (globalVariables.getUserDecision) {
                 BlocProvider.of<AuthenticationBloc>(context).add(
-                  CacheUserDataEvent(userEmail: globalVariables.getGlobalUserEmail),
+                  CacheUserDataEvent(
+                      userEmail: globalVariables.getGlobalUserEmail),
                 );
               }
               Navigator.of(context)
