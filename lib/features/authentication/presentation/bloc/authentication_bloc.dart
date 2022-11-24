@@ -12,6 +12,7 @@ import 'package:mova/features/authentication/domain/usecases/sign_in_use_case.da
 import 'package:mova/features/authentication/domain/usecases/sign_out_use_case.dart';
 import 'package:mova/features/authentication/domain/usecases/sign_up_use_case.dart';
 import 'package:mova/features/authentication/domain/usecases/sign_with_facebook_use_case.dart';
+import 'package:mova/features/authentication/domain/usecases/sign_with_google.dart';
 import 'package:mova/features/authentication/domain/usecases/verify_user_use_case.dart';
 
 part 'authentication_event.dart';
@@ -23,13 +24,21 @@ class AuthenticationBloc
   final SignUpUseCase signUp;
   final SignOutUseCase signOut;
   final SignWithFacebookUseCase signWithFacebook;
+  final SignWithGoogleUseCase signWithGoogle;
   final VerifyUserUseCase verifyUser;
   final CacheUserUseCase _cacheUser;
   final GetCachedUserUseCase _getCachedUser;
 
-  AuthenticationBloc(this.signIn, this.signUp, this.signOut, this.verifyUser,
-      this._cacheUser, this._getCachedUser, this.signWithFacebook)
-      : super(const AuthenticationState()) {
+  AuthenticationBloc(
+    this.signIn,
+    this.signUp,
+    this.signOut,
+    this.verifyUser,
+    this._cacheUser,
+    this._getCachedUser,
+    this.signWithFacebook,
+    this.signWithGoogle,
+  ) : super(const AuthenticationState()) {
     on<SignInEvent>(_signIn);
     on<SignUpEvent>(_signUp);
     on<SignOutEvent>(_signOut);
@@ -37,6 +46,7 @@ class AuthenticationBloc
     on<CacheUserDataEvent>(_cacheUserMethod);
     on<GetCachedUserDataEvent>(_getCachedUserMethod);
     on<SignWithFacebookEvent>(_signWithFacebook);
+    on<SignWithGoogleEvent>(_signWithGoogle);
   }
   //__________________________Sign in event_______________________________________
   FutureOr<void> _signIn(
@@ -103,6 +113,25 @@ class AuthenticationBloc
       (userData) => emit(state.copyWith(
         facebookSignState: RequestState.success,
         facebookUserData: userData,
+      )),
+    );
+  }
+
+  //__________________________Sign with Google________________________________________
+  FutureOr<void> _signWithGoogle(
+      SignWithGoogleEvent event, Emitter<AuthenticationState> emit) async {
+    emit(state.copyWith(googleSignState: RequestState.loading));
+
+    final result = await signWithGoogle(const NoParameters());
+
+    result.fold(
+      (failure) => emit(state.copyWith(
+        googleSignState: RequestState.error,
+        googleSignMessage: failure.errorMessage,
+      )),
+      (userData) => emit(state.copyWith(
+        googleSignState: RequestState.success,
+        googleUserData: userData,
       )),
     );
   }
