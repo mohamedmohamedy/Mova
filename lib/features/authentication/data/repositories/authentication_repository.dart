@@ -20,64 +20,36 @@ class AuthenticationRepository implements BaseAuthenticationRepository {
   AuthenticationRepository(
       this.deviceStatus, this.dataSource, this._localDataSource);
 
-  //_________________________Sign in___________________________________________
+  //_____________________________Sign in___________________________________
   @override
   Future<Either<Failure, Unit>> signIn(UserEntity user) async {
     UserModel userModel = UserModel(email: user.email, password: user.password);
     return await _signMethod(() => dataSource.signIn(userModel));
   }
 
-  //_________________________Sign up___________________________________________
+  //____________________________Sign up_______________________________________
   @override
   Future<Either<Failure, Unit>> signUp(UserEntity user) async {
     UserModel userModel = UserModel(email: user.email, password: user.password);
     return await _signMethod(() => dataSource.signUp(userModel));
   }
 
-  //_________________________Sign out___________________________________________
+  //___________________________Sign out________________________________________
   @override
   Future<Either<Failure, Unit>> signOut() async {
     return await _signMethod(() => dataSource.signOut());
   }
 
-  //________________________________common method_______________________________
-  Future<Either<Failure, Unit>> _signMethod(FutureFunction wantedMethod) async {
-    if (await deviceStatus.isConnected) {
-      try {
-        await wantedMethod();
-        return const Right(unit);
-      } on FirebaseAuthException catch (error) {
-        return Left(
-          ServerFailure(
-              errorMessage:
-                  error.message ?? StringsManager.serverFailureMessage),
-        );
-      }
-    } else {
-      return const Left(
-          OfflineFailure(errorMessage: StringsManager.offlineFailureMessage));
-    }
-  }
-
-  //__________________________________Sign with Facebook__________________________________
+  //_________________________Sign with Facebook__________________________________
   @override
   Future<Either<Failure, UserEntity>> signWithFacebook() async {
-    if (await deviceStatus.isConnected) {
-      try {
-        final response = await dataSource.signWithFacebook();
-        return Right(response);
-      } on FirebaseAuthException catch (error) {
-        return Left(ServerFailure(
-            errorMessage:
-                error.message ?? StringsManager.serverFailureMessage));
-      } catch (error) {
-        return const Left(
-            ServerFailure(errorMessage: StringsManager.serverFailureMessage));
-      }
-    } else {
-      return const Left(
-          OfflineFailure(errorMessage: StringsManager.offlineFailureMessage));
-    }
+    return await _socialSignMethod(() => dataSource.signWithFacebook());
+  }
+
+  //_____________________________Sign with Google__________________________________
+  @override
+  Future<Either<Failure, UserEntity>> signWithGoogle() async {
+    return await _socialSignMethod(() => dataSource.signWithGoogle());
   }
 
   //__________________________________Verify user__________________________________
@@ -100,8 +72,8 @@ class AuthenticationRepository implements BaseAuthenticationRepository {
     }
   }
 
-  @override
   //__________________________________Cache user email__________________________________
+  @override
   Future<Either<Failure, Unit>> cacheUser(String userEmail) async {
     try {
       await _localDataSource.cacheUser(userEmail);
@@ -114,7 +86,7 @@ class AuthenticationRepository implements BaseAuthenticationRepository {
     }
   }
 
-  //__________________________________Get Cached user email__________________________________
+  //__________________________________Get Cached user email________________________________
   @override
   Future<Either<Failure, Unit>> getCacheUser() async {
     try {
@@ -125,6 +97,46 @@ class AuthenticationRepository implements BaseAuthenticationRepository {
         EmptyCacheFailure(
             errorMessage: StringsManager.emptyCacheFailureMessage),
       );
+    }
+  }
+
+  //_________________common sign with email and password method____________________
+  Future<Either<Failure, Unit>> _signMethod(FutureFunction wantedMethod) async {
+    if (await deviceStatus.isConnected) {
+      try {
+        await wantedMethod();
+        return const Right(unit);
+      } on FirebaseAuthException catch (error) {
+        return Left(
+          ServerFailure(
+              errorMessage:
+                  error.message ?? StringsManager.serverFailureMessage),
+        );
+      }
+    } else {
+      return const Left(
+          OfflineFailure(errorMessage: StringsManager.offlineFailureMessage));
+    }
+  }
+
+  //______________________________common social sign method_____________________________
+  Future<Either<Failure, UserEntity>> _socialSignMethod(
+      SocialFunction socialSignFunction) async {
+    if (await deviceStatus.isConnected) {
+      try {
+        final response = await socialSignFunction();
+        return Right(response);
+      } on FirebaseAuthException catch (error) {
+        return Left(ServerFailure(
+            errorMessage:
+                error.message ?? StringsManager.serverFailureMessage));
+      } catch (error) {
+        return const Left(
+            ServerFailure(errorMessage: StringsManager.serverFailureMessage));
+      }
+    } else {
+      return const Left(
+          OfflineFailure(errorMessage: StringsManager.offlineFailureMessage));
     }
   }
 }

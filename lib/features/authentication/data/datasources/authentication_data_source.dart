@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:mova/features/authentication/data/models/facebook_user_model.dart';
 import 'package:mova/features/authentication/data/models/user_model.dart';
 
@@ -10,34 +11,36 @@ abstract class BaseAuthenticationDataSource {
   Future<Unit> signIn(UserModel user);
   Future<Unit> signUp(UserModel user);
   Future<UserModel> signWithFacebook();
+  Future<UserModel> signWithGoogle();
   Future<Unit> signOut();
   Future<bool> verifyUser();
 }
 
 class AuthenticationDataSource implements BaseAuthenticationDataSource {
+  final fireAuth = FirebaseAuth.instance;
   //_______________________________Sign in ___________________________________
   @override
   Future<Unit> signIn(UserModel user) async {
-    await FirebaseAuth.instance
-        .signInWithEmailAndPassword(email: user.email, password: user.password);
+    await fireAuth.signInWithEmailAndPassword(
+        email: user.email, password: user.password);
     return Future.value(unit);
   }
 
   //_______________________________Sign up ___________________________________
   @override
   Future<Unit> signUp(UserModel user) async {
-    await FirebaseAuth.instance.createUserWithEmailAndPassword(
+    await fireAuth.createUserWithEmailAndPassword(
       email: user.email,
       password: user.password,
     );
-    await FirebaseAuth.instance.currentUser!.sendEmailVerification();
+    await fireAuth.currentUser!.sendEmailVerification();
     return Future.value(unit);
   }
 
   //_______________________________Sign out ___________________________________
   @override
   Future<Unit> signOut() async {
-    await FirebaseAuth.instance.signOut();
+    await fireAuth.signOut();
     return Future.value(unit);
   }
 
@@ -56,18 +59,34 @@ class AuthenticationDataSource implements BaseAuthenticationDataSource {
 
     final OAuthCredential credential =
         FacebookAuthProvider.credential(result.accessToken!.token);
-    await FirebaseAuth.instance.signInWithCredential(credential);
+    await fireAuth.signInWithCredential(credential);
 
     return Future.value(userModel);
+  }
+
+  //_______________________________Sign with Google______________________________
+  @override
+  Future<UserModel> signWithGoogle() async {
+    final GoogleSignIn googleSignIn = GoogleSignIn(scopes: ['email']);
+    final googleSignInAccount = await googleSignIn.signIn();
+    final googleSignInAuthentication =
+        await googleSignInAccount!.authentication;
+    final credential = GoogleAuthProvider.credential(
+        accessToken: googleSignInAuthentication.accessToken,
+        idToken: googleSignInAuthentication.idToken);
+    await fireAuth.signInWithCredential(credential);
+    final UserModel user = UserModel(
+        email: googleSignInAccount.email, password: googleSignInAccount.id);
+    return Future.value(user);
   }
 
   //_______________________________Verify User__________________________________
   @override
   Future<bool> verifyUser() async {
-    final user = FirebaseAuth.instance.currentUser!;
+    final user = fireAuth.currentUser!;
     await user.reload();
     if (user.emailVerified) {
-      return  Future.value(true) ;
+      return Future.value(true);
     }
     return Future.value(false);
   }
