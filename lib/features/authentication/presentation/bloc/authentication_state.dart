@@ -18,6 +18,11 @@ class AuthenticationState extends Equatable {
   final String facebookSignMessage;
   final UserEntity facebookUserData;
 
+  // Sign with Google state
+  final RequestState googleSignState;
+  final String googleSignMessage;
+  final UserEntity googleUserData;
+
   // Verify User
   final bool userState;
   final RequestState verifyUserState;
@@ -41,7 +46,10 @@ class AuthenticationState extends Equatable {
     this.userState = false,
     this.facebookSignState = RequestState.stable,
     this.facebookSignMessage = '',
-    this.facebookUserData = const  UserEntity(email: '', password: ''),
+    this.facebookUserData = const UserEntity(email: '', password: ''),
+    this.googleSignState = RequestState.stable,
+    this.googleSignMessage = '',
+    this.googleUserData = const UserEntity(email: '', password: ''),
     this.verifyUserState = RequestState.loading,
     this.verifyUserMessage = '',
     this.cacheUserDataState = RequestState.loading,
@@ -68,6 +76,11 @@ class AuthenticationState extends Equatable {
     String? facebookSignMessage,
     UserEntity? facebookUserData,
 
+    // Sign with Google
+    RequestState? googleSignState,
+    String? googleSignMessage,
+    UserEntity? googleUserData,
+
     // Verify User
     bool? userState,
     RequestState? verifyUserState,
@@ -91,6 +104,9 @@ class AuthenticationState extends Equatable {
       facebookSignState: facebookSignState ?? this.facebookSignState,
       facebookSignMessage: facebookSignMessage ?? this.facebookSignMessage,
       facebookUserData: facebookUserData ?? this.facebookUserData,
+      googleSignState: googleSignState ?? this.googleSignState,
+      googleSignMessage: googleSignMessage ?? this.googleSignMessage,
+      googleUserData: googleUserData ?? this.googleUserData,
       userState: userState ?? this.userState,
       verifyUserMessage: verifyUserMessage ?? this.verifyUserMessage,
       verifyUserState: verifyUserState ?? this.verifyUserState,
@@ -115,6 +131,9 @@ class AuthenticationState extends Equatable {
         facebookSignState,
         facebookSignMessage,
         facebookUserData,
+        googleSignState,
+        googleSignMessage,
+        googleUserData,
         verifyUserMessage,
         verifyUserState,
         cacheUserDataState,

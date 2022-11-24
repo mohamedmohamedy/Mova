@@ -8,44 +8,45 @@ import '../../../../core/utils/request_state.dart';
 import '../../../../core/utils/snack_bar_util.dart';
 import '../bloc/authentication_bloc.dart';
 
-class FacebookSignWidget extends StatelessWidget {
-  final Widget facebookSignView;
-  const FacebookSignWidget({super.key, required this.facebookSignView});
+class GoogleSignWidget extends StatelessWidget {
+  final Widget googleSignView;
+  const GoogleSignWidget({super.key, required this.googleSignView});
 
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<AuthenticationBloc, AuthenticationState>(
       listenWhen: (previous, current) =>
-          previous.facebookSignState != current.facebookSignState,
+          previous.googleSignState != current.googleSignState,
       listener: (context, state) {
-        if (state.facebookSignState == RequestState.error) {
+        if (state.googleSignState == RequestState.error) {
           return SnackBarUtil().getSnackBar(
               context: context,
-              message: state.facebookSignMessage,
+              message: state.googleSignMessage,
               color: ColorsManager.mainRedColor);
         }
-        if (state.facebookSignState == RequestState.success) {
+        if (state.googleSignState == RequestState.success) {
           BlocProvider.of<AuthenticationBloc>(context).add(
-            CacheUserDataEvent(userEmail: state.facebookUserData.email),
+            CacheUserDataEvent(userEmail: state.googleUserData.email),
           );
           Navigator.of(context)
               .pushReplacementNamed(Routes.onBoardingScreenKey);
         }
       },
       buildWhen: (previous, current) =>
-          previous.facebookSignState != current.facebookSignState,
+          previous.googleSignState != current.googleSignState,
       builder: (context, state) {
-        if (state.facebookSignState == RequestState.stable) {
-          return facebookSignView;
+        if (state.googleSignState == RequestState.stable) {
+          return googleSignView;
         }
-        if (state.facebookSignState == RequestState.error) {
-          return facebookSignView;
+        if (state.googleSignState == RequestState.error) {
+          return googleSignView;
         }
-        if (state.facebookSignState == RequestState.loading) {
+        if (state.googleSignState == RequestState.loading) {
           return const LoadingIndicatorUtil();
         }
         return const SizedBox();
       },
     );
+
   }
 }

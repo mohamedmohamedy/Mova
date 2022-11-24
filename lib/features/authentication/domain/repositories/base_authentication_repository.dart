@@ -7,6 +7,7 @@ abstract class BaseAuthenticationRepository {
   Future<Either<Failure, Unit>> signIn(UserEntity user);
   Future<Either<Failure, Unit>> signUp(UserEntity user);
   Future<Either<Failure, UserEntity>> signWithFacebook();
+  Future<Either<Failure, UserEntity>> signWithGoogle();
   Future<Either<Failure, Unit>> signOut();
   Future<Either<Failure, bool>> verifyUser();
   Future<Either<Failure, Unit>> cacheUser(String userEmail);
