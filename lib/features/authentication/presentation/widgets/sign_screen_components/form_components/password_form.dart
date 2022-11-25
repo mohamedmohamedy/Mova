@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/resources/fonts_manager.dart';
-import '../../../../core/resources/strings_manager.dart';
-import '../../../../core/resources/styles_manager.dart';
-import '../../../../core/resources/values_manager.dart';
+import '../../../../../../core/resources/fonts_manager.dart';
+import '../../../../../../core/resources/strings_manager.dart';
+import '../../../../../../core/resources/styles_manager.dart';
+import '../../../../../../core/resources/values_manager.dart';
 
 class PasswordForm extends StatefulWidget {
   const PasswordForm({

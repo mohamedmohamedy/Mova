@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:mova/core/resources/fonts_manager.dart';
 import 'package:sizer/sizer.dart';
-import '../../../../core/resources/values_manager.dart';
+
+import '../../../../../../core/resources/values_manager.dart';
 
 class SignTypeText extends StatelessWidget {
   final String signSentence;

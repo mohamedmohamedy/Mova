@@ -3,12 +3,11 @@ import 'package:sizer/sizer.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mova/core/global/type_def.dart';
 import 'package:mova/core/resources/values_manager.dart';
-import 'package:mova/features/authentication/presentation/widgets/password_form.dart';
-import 'package:mova/features/authentication/presentation/widgets/remember_me_row.dart';
-import '../../../../core/utils/general_button.dart';
-
-import '../bloc/authentication_bloc.dart';
-import 'email_form.dart';
+import '../../../../../../core/utils/general_button.dart';
+import '../../../bloc/regular_sign/authentication_bloc.dart';
+import './email_form.dart';
+import 'password_form.dart';
+import 'remember_me_row.dart';
 
 class SignForm extends StatelessWidget {
   final AuthenticationEventFunction signEvent;

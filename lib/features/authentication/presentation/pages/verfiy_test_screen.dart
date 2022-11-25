@@ -5,9 +5,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mova/core/global/global_varibles.dart';
 import 'package:mova/core/resources/routes.dart';
 import 'package:mova/core/utils/loading_indicator_util.dart';
+import 'package:mova/features/authentication/presentation/bloc/caching_user_data/caching_user_data_bloc.dart';
 import '../../../../core/utils/request_state.dart';
 import '../../../../core/utils/snack_bar_util.dart';
-import '../bloc/authentication_bloc.dart';
+import '../bloc/regular_sign/authentication_bloc.dart';
 import '../widgets/verifying_component.dart';
 
 class VerifyTestScreen extends StatelessWidget {
@@ -43,7 +44,7 @@ class VerifyTestScreen extends StatelessWidget {
               verified = true;
               timer?.cancel();
               if (globalVariables.getUserDecision) {
-                BlocProvider.of<AuthenticationBloc>(context).add(
+                BlocProvider.of<CachingUserDataBloc>(context).add(
                   CacheUserDataEvent(
                       userEmail: globalVariables.getGlobalUserEmail),
                 );
