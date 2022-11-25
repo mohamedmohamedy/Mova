@@ -1,5 +1,4 @@
 import 'package:dartz/dartz.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:mova/core/resources/strings_manager.dart';
 import 'package:mova/core/network/exceptions.dart';
 import 'package:shared_preferences/shared_preferences.dart';

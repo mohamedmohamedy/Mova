@@ -10,20 +10,23 @@ import 'package:mova/features/authentication/domain/usecases/cache_user_use_case
 import 'package:mova/features/authentication/domain/usecases/get_cached_user_use_case.dart';
 import 'package:mova/features/authentication/domain/usecases/sign_in_use_case.dart';
 import 'package:mova/features/authentication/domain/usecases/sign_with_facebook_use_case.dart';
-import 'package:mova/features/authentication/presentation/bloc/authentication_bloc.dart';
+import 'package:mova/features/authentication/presentation/bloc/caching_user_data/caching_user_data_bloc.dart';
+import 'package:mova/features/authentication/presentation/bloc/social_sign/social_sign_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'features/authentication/domain/usecases/sign_out_use_case.dart';
 import 'features/authentication/domain/usecases/sign_up_use_case.dart';
 import 'features/authentication/domain/usecases/sign_with_google.dart';
 import 'features/authentication/domain/usecases/verify_user_use_case.dart';
+import 'features/authentication/presentation/bloc/regular_sign/authentication_bloc.dart';
 
 final sl = GetIt.instance;
 
 Future<void> init() async {
   /// BLoC
-  sl.registerFactory(
-      () => AuthenticationBloc(sl(), sl(), sl(), sl(), sl(), sl(), sl(), sl()));
+  sl.registerFactory(() => AuthenticationBloc(sl(), sl(), sl(), sl()));
+  sl.registerFactory(() => SocialSignBloc(sl(), sl()));
+  sl.registerFactory(() => CachingUserDataBloc(sl(), sl()));
 
   /// Use cases
   sl.registerLazySingleton(() => SignInUseCase(sl()));

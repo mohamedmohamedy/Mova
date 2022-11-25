@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:mova/features/authentication/domain/entities/user.dart';
 
-import '../../features/authentication/presentation/bloc/authentication_bloc.dart';
+import '../../features/authentication/presentation/bloc/regular_sign/authentication_bloc.dart';
 
 typedef FutureFunction = Future<Unit> Function();
 typedef SocialFunction = Future<UserEntity> Function();
