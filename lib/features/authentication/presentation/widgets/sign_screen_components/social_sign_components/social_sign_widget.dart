@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:mova/core/resources/values_manager.dart';
-import 'package:mova/features/authentication/presentation/widgets/facebook_sign_widget.dart';
-import 'package:mova/features/authentication/presentation/widgets/google_sign_widget.dart';
-import 'package:mova/features/authentication/presentation/widgets/social_sign_components.dart';
 import 'package:sizer/sizer.dart';
 
-import '../bloc/authentication_bloc.dart';
+import '../../../bloc/social_sign/social_sign_bloc.dart';
+import 'facebook_sign_widget.dart';
+import 'google_sign_widget.dart';
+import 'social_sign_components.dart';
 
 class SocialSignWidget extends StatelessWidget {
   const SocialSignWidget({super.key});

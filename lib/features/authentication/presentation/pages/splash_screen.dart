@@ -4,7 +4,8 @@ import 'package:mova/core/resources/images_path.dart';
 import 'package:mova/core/resources/routes.dart';
 import 'package:mova/core/utils/loading_indicator_util.dart';
 import 'package:mova/core/utils/request_state.dart';
-import 'package:mova/features/authentication/presentation/bloc/authentication_bloc.dart';
+
+import '../bloc/caching_user_data/caching_user_data_bloc.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -18,14 +19,14 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     Future.delayed(const Duration(seconds: 5)).then((_) =>
-        BlocProvider.of<AuthenticationBloc>(context)
+        BlocProvider.of<CachingUserDataBloc>(context)
             .add(GetCachedUserDataEvent()));
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: BlocListener<AuthenticationBloc, AuthenticationState>(
+      body: BlocListener<CachingUserDataBloc, CachingUserDataState>(
         listener: (context, state) {
           if (state.getCacheUserDataState == RequestState.error) {
             Navigator.of(context).pushReplacementNamed(Routes.signUpScreenKey);

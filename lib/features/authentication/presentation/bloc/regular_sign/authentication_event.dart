@@ -17,17 +17,9 @@ class SignUpEvent extends AuthenticationEvent {
   const SignUpEvent({required this.user});
 }
 
-class SignWithFacebookEvent extends AuthenticationEvent {}
 
-class SignWithGoogleEvent extends AuthenticationEvent {}
 
 class SignOutEvent extends AuthenticationEvent {}
 
 class VerifyUserEvent extends AuthenticationEvent {}
 
-class CacheUserDataEvent extends AuthenticationEvent {
-  final String userEmail;
-  const CacheUserDataEvent({required this.userEmail});
-}
-
-class GetCachedUserDataEvent extends AuthenticationEvent {}

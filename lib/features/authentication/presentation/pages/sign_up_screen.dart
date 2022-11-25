@@ -3,16 +3,16 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mova/core/resources/strings_manager.dart';
 import 'package:mova/core/resources/values_manager.dart';
 import 'package:mova/core/utils/snack_bar_util.dart';
-import 'package:mova/features/authentication/presentation/bloc/authentication_bloc.dart';
-import 'package:mova/features/authentication/presentation/widgets/authentication_divider.dart';
-import 'package:mova/features/authentication/presentation/widgets/social_sign_widget.dart';
-import 'package:mova/features/authentication/presentation/widgets/have_account_widget.dart';
-import 'package:mova/features/authentication/presentation/widgets/sign_form.dart';
 import '../../../../core/resources/routes.dart';
 import '../../../../core/utils/request_state.dart';
 import '../../domain/entities/user.dart';
-import '../widgets/main_logo.dart';
-import '../widgets/sign_type_text.dart';
+import '../bloc/regular_sign/authentication_bloc.dart';
+import '../widgets/sign_screen_components/form_components/sign_form.dart';
+import '../widgets/sign_screen_components/sign_screens_shared_components/authentication_divider.dart';
+import '../widgets/sign_screen_components/sign_screens_shared_components/have_account_widget.dart';
+import '../widgets/sign_screen_components/sign_screens_shared_components/main_logo.dart';
+import '../widgets/sign_screen_components/sign_screens_shared_components/sign_type_text.dart';
+import '../widgets/sign_screen_components/social_sign_components/social_sign_widget.dart';
 
 class SignUpScreen extends StatelessWidget {
   const SignUpScreen({super.key});
