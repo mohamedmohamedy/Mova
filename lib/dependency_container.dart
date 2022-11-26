@@ -2,10 +2,14 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get_it/get_it.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:mova/core/network/network_info.dart';
-import 'package:mova/features/authentication/data/datasources/authentication_data_source.dart';
+import 'package:mova/features/authentication/data/datasources/authentication_remote_data_source.dart';
 import 'package:mova/features/authentication/data/datasources/authentication_local_data_source.dart';
-import 'package:mova/features/authentication/data/repositories/authentication_repository.dart';
-import 'package:mova/features/authentication/domain/repositories/base_authentication_repository.dart';
+import 'package:mova/features/authentication/data/repositories/caching_user_data_repository.dart';
+import 'package:mova/features/authentication/data/repositories/regular_authentication_repository.dart';
+import 'package:mova/features/authentication/data/repositories/social_sign_repository.dart';
+import 'package:mova/features/authentication/domain/repositories/base_caching_user_data_repository.dart';
+import 'package:mova/features/authentication/domain/repositories/base_regular_authentication_repository.dart';
+import 'package:mova/features/authentication/domain/repositories/base_social_sign_repository.dart';
 import 'package:mova/features/authentication/domain/usecases/cache_user_use_case.dart';
 import 'package:mova/features/authentication/domain/usecases/get_cached_user_use_case.dart';
 import 'package:mova/features/authentication/domain/usecases/sign_in_use_case.dart';
@@ -39,12 +43,16 @@ Future<void> init() async {
   sl.registerLazySingleton(() => SignWithGoogleUseCase(sl()));
 
   /// Repository
-  sl.registerLazySingleton<BaseAuthenticationRepository>(
-      () => AuthenticationRepository(sl(), sl(), sl()));
+  sl.registerLazySingleton<BaseRegularAuthenticationRepository>(
+      () => AuthenticationRepository(sl(), sl()));
+  sl.registerLazySingleton<BaseSocialSignRepository>(
+      () => SocialSignRepository(sl(), sl()));
+  sl.registerLazySingleton<BaseCachingUserDataRepository>(
+      () => CachingUserDataRepository(sl()));
 
   /// Data sources
-  sl.registerLazySingleton<BaseAuthenticationDataSource>(
-      () => AuthenticationDataSource());
+  sl.registerLazySingleton<BaseAuthenticationRemoteDataSource>(
+      () => AuthenticationRemoteDataSource());
   sl.registerLazySingleton<BaseLocalDataSource>(() => LocalDataSource());
 
   /// External
