@@ -37,16 +37,10 @@ class GoogleSignWidget extends StatelessWidget {
       buildWhen: (previous, current) =>
           previous.googleSignState != current.googleSignState,
       builder: (context, state) {
-        if (state.googleSignState == RequestState.stable) {
-          return googleSignView;
-        }
-        if (state.googleSignState == RequestState.error) {
-          return googleSignView;
-        }
         if (state.googleSignState == RequestState.loading) {
           return const LoadingIndicatorUtil();
         }
-        return const SizedBox();
+          return googleSignView;
       },
     );
 

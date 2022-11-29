@@ -15,13 +15,16 @@ part 'social_sign_state.dart';
 class SocialSignBloc extends Bloc<SocialSignEvent, SocialSignState> {
   final SignWithFacebookUseCase signWithFacebook;
   final SignWithGoogleUseCase signWithGoogle;
+  
 
   SocialSignBloc(
     this.signWithFacebook,
     this.signWithGoogle,
+  
   ) : super(const SocialSignState()) {
     on<SignWithFacebookEvent>(_signWithFacebook);
     on<SignWithGoogleEvent>(_signWithGoogle);
+   
   }
 
   //__________________________Sign with Facebook event__________________________________
@@ -60,4 +63,5 @@ class SocialSignBloc extends Bloc<SocialSignEvent, SocialSignState> {
       )),
     );
   }
+
 }

@@ -6,7 +6,9 @@ import '../models/facebook_user_model.dart';
 import '../models/user_model.dart';
 
 class SocialSignDataSource {
-    final fireAuth = FirebaseAuth.instance;
+  final fireAuth = FirebaseAuth.instance;
+  String? userVerificationId;
+  int? userForceResendingToken;
   //_______________________________Sign with facebook__________________________
   Future<UserModel> socialSignWithFacebook() async {
     final LoginResult result = await FacebookAuth.instance.login();

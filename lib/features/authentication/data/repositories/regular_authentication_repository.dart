@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:mova/core/resources/strings_manager.dart';
 import 'package:mova/core/network/network_info.dart';
-import 'package:mova/features/authentication/data/datasources/authentication_remote_data_source.dart';
+import 'package:mova/features/authentication/data/datasources/base_authentication_remote_data_source.dart';
 import 'package:mova/features/authentication/data/models/user_model.dart';
 import 'package:mova/features/authentication/domain/entities/user.dart';
 import 'package:mova/core/network/failure.dart';
