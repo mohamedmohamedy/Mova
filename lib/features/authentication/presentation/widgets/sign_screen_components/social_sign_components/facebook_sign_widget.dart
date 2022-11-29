@@ -36,16 +36,10 @@ class FacebookSignWidget extends StatelessWidget {
       buildWhen: (previous, current) =>
           previous.facebookSignState != current.facebookSignState,
       builder: (context, state) {
-        if (state.facebookSignState == RequestState.stable) {
-          return facebookSignView;
-        }
-        if (state.facebookSignState == RequestState.error) {
-          return facebookSignView;
-        }
         if (state.facebookSignState == RequestState.loading) {
           return const LoadingIndicatorUtil();
         }
-        return const SizedBox();
+        return facebookSignView;
       },
     );
   }

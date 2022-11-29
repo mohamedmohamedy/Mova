@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mova/bloc_observer.dart';
 import 'package:mova/core/resources/routes.dart';
 import 'package:mova/core/resources/theme_manager.dart';
+import 'package:mova/features/authentication/presentation/bloc/phone_number_sign/phone_number_sign_bloc.dart';
 import 'package:mova/features/authentication/presentation/bloc/social_sign/social_sign_bloc.dart';
 import 'package:mova/features/authentication/presentation/pages/splash_screen.dart';
 import 'dependency_container.dart' as di;
@@ -29,6 +30,7 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(create: (_) => di.sl<AuthenticationBloc>()),
         BlocProvider(create: (_) => di.sl<CachingUserDataBloc>()),
+        BlocProvider(create: (_) => di.sl<PhoneNumberSignBloc>()),
         BlocProvider(create: (_) => di.sl<SocialSignBloc>()),
       ],
       child: Sizer(

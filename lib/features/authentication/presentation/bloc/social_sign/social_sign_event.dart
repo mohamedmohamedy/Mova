@@ -10,3 +10,5 @@ abstract class SocialSignEvent extends Equatable {
 class SignWithFacebookEvent extends SocialSignEvent {}
 
 class SignWithGoogleEvent extends SocialSignEvent {}
+
+

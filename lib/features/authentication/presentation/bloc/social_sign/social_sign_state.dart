@@ -15,9 +15,11 @@ class SocialSignState extends Equatable {
     this.facebookSignState = RequestState.stable,
     this.facebookSignMessage = '',
     this.facebookUserData = const UserEntity(email: '', password: ''),
+   
     this.googleSignState = RequestState.stable,
     this.googleSignMessage = '',
     this.googleUserData = const UserEntity(email: '', password: ''),
+    
   });
   SocialSignState copyWith({
     // Sign with Facebook
@@ -29,14 +31,18 @@ class SocialSignState extends Equatable {
     RequestState? googleSignState,
     String? googleSignMessage,
     UserEntity? googleUserData,
+
+
   }) {
     return SocialSignState(
       facebookSignState: facebookSignState ?? this.facebookSignState,
       facebookSignMessage: facebookSignMessage ?? this.facebookSignMessage,
       facebookUserData: facebookUserData ?? this.facebookUserData,
+    
       googleSignState: googleSignState ?? this.googleSignState,
       googleSignMessage: googleSignMessage ?? this.googleSignMessage,
       googleUserData: googleUserData ?? this.googleUserData,
+
     );
   }
 
@@ -45,8 +51,10 @@ class SocialSignState extends Equatable {
         facebookSignState,
         facebookSignMessage,
         facebookUserData,
+      
         googleSignState,
         googleSignMessage,
         googleUserData,
+      
       ];
 }
