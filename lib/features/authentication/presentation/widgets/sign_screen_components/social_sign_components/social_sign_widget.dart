@@ -21,11 +21,10 @@ class SocialSignWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             FacebookSignWidget(
-              facebookSignView: SocialSignComponent(
-                authIcon: FontAwesomeIcons.facebook,
-                signEvent: SignWithFacebookEvent(),
-              ),
-            ),
+                facebookSignView: SocialSignComponent(
+              authIcon: FontAwesomeIcons.facebook,
+              signEvent: SignWithFacebookEvent(),
+            )),
             GoogleSignWidget(
                 googleSignView: SocialSignComponent(
               authIcon: FontAwesomeIcons.google,

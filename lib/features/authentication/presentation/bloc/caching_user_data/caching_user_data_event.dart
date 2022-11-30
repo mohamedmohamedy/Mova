@@ -12,3 +12,5 @@ class CacheUserDataEvent extends CachingUserDataEvent {
 }
 
 class GetCachedUserDataEvent extends CachingUserDataEvent {}
+
+class DeleteCachedUserDataEvent extends CachingUserDataEvent {}

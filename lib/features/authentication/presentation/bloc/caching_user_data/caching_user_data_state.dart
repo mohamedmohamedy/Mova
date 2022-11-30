@@ -8,12 +8,18 @@ class CachingUserDataState extends Equatable {
   // get cached user data
   final RequestState getCacheUserDataState;
   final String getCacheUserDataMessage;
+  
+  // delete cached user data
+  final RequestState deleteCacheUserDataState;
+  final String deleteCacheUserDataMessage;
 
   const CachingUserDataState({
     this.cacheUserDataState = RequestState.loading,
     this.cacheUserDataMessage = '',
     this.getCacheUserDataState = RequestState.loading,
     this.getCacheUserDataMessage = '',
+    this.deleteCacheUserDataState = RequestState.stable,
+    this.deleteCacheUserDataMessage = '',
   });
 
   CachingUserDataState copyWith({
@@ -24,6 +30,10 @@ class CachingUserDataState extends Equatable {
     // get cached user state
     RequestState? getCacheUserDataState,
     String? getCacheUserDataMessage,
+    
+    // delete cached user state
+    RequestState? deleteCacheUserDataState,
+    String? deleteCacheUserDataMessage,
   }) {
     return CachingUserDataState(
       cacheUserDataState: cacheUserDataState ?? this.cacheUserDataState,
@@ -32,6 +42,10 @@ class CachingUserDataState extends Equatable {
           getCacheUserDataState ?? this.getCacheUserDataState,
       getCacheUserDataMessage:
           getCacheUserDataMessage ?? this.getCacheUserDataMessage,
+      deleteCacheUserDataState:
+          deleteCacheUserDataState ?? this.deleteCacheUserDataState,
+      deleteCacheUserDataMessage:
+          deleteCacheUserDataMessage ?? this.deleteCacheUserDataMessage,
     );
   }
 
@@ -41,5 +55,7 @@ class CachingUserDataState extends Equatable {
         cacheUserDataMessage,
         getCacheUserDataState,
         getCacheUserDataMessage,
+        deleteCacheUserDataState,
+        deleteCacheUserDataMessage,
       ];
 }
