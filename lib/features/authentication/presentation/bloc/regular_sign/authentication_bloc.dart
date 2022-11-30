@@ -6,7 +6,6 @@ import 'package:mova/core/global/base_use_case.dart';
 import 'package:mova/core/utils/request_state.dart';
 import 'package:mova/features/authentication/domain/entities/user.dart';
 import 'package:mova/features/authentication/domain/usecases/sign_in_use_case.dart';
-import 'package:mova/features/authentication/domain/usecases/sign_out_use_case.dart';
 import 'package:mova/features/authentication/domain/usecases/sign_up_use_case.dart';
 import 'package:mova/features/authentication/domain/usecases/verify_user_use_case.dart';
 
@@ -17,18 +16,15 @@ class AuthenticationBloc
     extends Bloc<AuthenticationEvent, AuthenticationState> {
   final SignInUseCase signIn;
   final SignUpUseCase signUp;
-  final SignOutUseCase signOut;
   final VerifyUserUseCase verifyUser;
 
   AuthenticationBloc(
     this.signIn,
     this.signUp,
-    this.signOut,
     this.verifyUser,
   ) : super(const AuthenticationState()) {
     on<SignInEvent>(_signIn);
     on<SignUpEvent>(_signUp);
-    on<SignOutEvent>(_signOut);
     on<VerifyUserEvent>(_verifyUser);
   }
   //__________________________Sign in event_______________________________________
@@ -60,24 +56,6 @@ class AuthenticationBloc
       )),
       (_) => emit(state.copyWith(
         signUpState: RequestState.success,
-      )),
-    );
-  }
-
-  //__________________________Sign out event_______________________________________
-  FutureOr<void> _signOut(
-      SignOutEvent event, Emitter<AuthenticationState> emit) async {
-    final result = await signOut(const NoParameters());
-
-    result.fold(
-      (failure) => emit(
-        state.copyWith(
-          signOutState: RequestState.error,
-          signOutMessage: failure.errorMessage,
-        ),
-      ),
-      (_) => emit(state.copyWith(
-        signOutState: RequestState.success,
       )),
     );
   }

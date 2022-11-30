@@ -17,9 +17,5 @@ class SignUpEvent extends AuthenticationEvent {
   const SignUpEvent({required this.user});
 }
 
-
-
-class SignOutEvent extends AuthenticationEvent {}
-
 class VerifyUserEvent extends AuthenticationEvent {}
 

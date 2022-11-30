@@ -13,7 +13,6 @@ import '../../../../core/global/type_def.dart';
 class AuthenticationRepository implements BaseRegularAuthenticationRepository {
   final BaseNetworkInfo _deviceStatus;
   final BaseAuthenticationRemoteDataSource _dataSource;
-
   const AuthenticationRepository(this._deviceStatus, this._dataSource);
 
   //_____________________________Sign in___________________________________
@@ -28,12 +27,6 @@ class AuthenticationRepository implements BaseRegularAuthenticationRepository {
   Future<Either<Failure, Unit>> signUp(UserEntity user) async {
     UserModel userModel = UserModel(email: user.email, password: user.password);
     return await _signMethod(() => _dataSource.signUp(userModel));
-  }
-
-  //___________________________Sign out________________________________________
-  @override
-  Future<Either<Failure, Unit>> signOut() async {
-    return await _signMethod(() => _dataSource.signOut());
   }
 
   //__________________________________Verify user__________________________________

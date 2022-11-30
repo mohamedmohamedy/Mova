@@ -13,6 +13,7 @@ import 'package:mova/features/authentication/domain/repositories/base_regular_au
 import 'package:mova/features/authentication/domain/repositories/base_sign_with_phone_number_repository.dart';
 import 'package:mova/features/authentication/domain/repositories/base_social_sign_repository.dart';
 import 'package:mova/features/authentication/domain/usecases/cache_user_use_case.dart';
+import 'package:mova/features/authentication/domain/usecases/delete_user_cached_data_use_case.dart';
 import 'package:mova/features/authentication/domain/usecases/get_cached_user_use_case.dart';
 import 'package:mova/features/authentication/domain/usecases/otp_verification_use_case.dart';
 import 'package:mova/features/authentication/domain/usecases/sign_in_use_case.dart';
@@ -23,7 +24,6 @@ import 'package:mova/features/authentication/presentation/bloc/phone_number_sign
 import 'package:mova/features/authentication/presentation/bloc/social_sign/social_sign_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'features/authentication/domain/usecases/sign_out_use_case.dart';
 import 'features/authentication/domain/usecases/sign_up_use_case.dart';
 import 'features/authentication/domain/usecases/sign_with_google.dart';
 import 'features/authentication/domain/usecases/verify_user_use_case.dart';
@@ -33,12 +33,13 @@ final sl = GetIt.instance;
 
 Future<void> init() async {
   /// BLoC
-  sl.registerFactory(() => AuthenticationBloc(sl(), sl(), sl(), sl()));
-  sl.registerFactory(() => CachingUserDataBloc(sl(), sl()));
+  sl.registerFactory(() => AuthenticationBloc(sl(), sl(), sl()));
+  sl.registerFactory(() => CachingUserDataBloc(sl(), sl(), sl()));
   sl.registerFactory(() => PhoneNumberSignBloc(sl(), sl()));
   sl.registerFactory(() => SocialSignBloc(sl(), sl()));
 
   /// Use cases
+  sl.registerLazySingleton(() => DeleteUserCachedDataUseCase(sl()));
   sl.registerLazySingleton(() => SignWithPhoneNumberUseCase(sl()));
   sl.registerLazySingleton(() => SignWithFacebookUseCase(sl()));
   sl.registerLazySingleton(() => OtpVerificationUseCase(sl()));
@@ -46,7 +47,6 @@ Future<void> init() async {
   sl.registerLazySingleton(() => GetCachedUserUseCase(sl()));
   sl.registerLazySingleton(() => VerifyUserUseCase(sl()));
   sl.registerLazySingleton(() => CacheUserUseCase(sl()));
-  sl.registerLazySingleton(() => SignOutUseCase(sl()));
   sl.registerLazySingleton(() => SignInUseCase(sl()));
   sl.registerLazySingleton(() => SignUpUseCase(sl()));
 
@@ -56,7 +56,7 @@ Future<void> init() async {
   sl.registerLazySingleton<BaseSocialSignRepository>(
       () => SocialSignRepository(sl(), sl()));
   sl.registerLazySingleton<BaseCachingUserDataRepository>(
-      () => CachingUserDataRepository(sl()));
+      () => CachingUserDataRepository(sl(), sl()));
   sl.registerLazySingleton<BaseSignWithPhoneNumberRepository>(
       () => SignWithPhoneNumberRepository(sl(), sl()));
 

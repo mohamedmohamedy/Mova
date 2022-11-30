@@ -5,11 +5,11 @@ import 'package:mova/features/authentication/domain/entities/user.dart';
 import 'package:mova/features/authentication/domain/repositories/base_regular_authentication_repository.dart';
 
 class SignUpUseCase extends BaseUseCase<Unit, UserEntity> {
-  BaseRegularAuthenticationRepository repository;
-  SignUpUseCase(this.repository);
+  final BaseRegularAuthenticationRepository _repository;
+  SignUpUseCase(this._repository);
 
   @override
   Future<Either<Failure, Unit>> call(UserEntity parameters) async {
-    return await repository.signUp(parameters);
+    return await _repository.signUp(parameters);
   }
 }

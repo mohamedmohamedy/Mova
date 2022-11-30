@@ -9,10 +9,6 @@ class AuthenticationState extends Equatable {
   final RequestState signUpState;
   final String signUpMessage;
 
-  // Sign out state
-  final RequestState signOutState;
-  final String signOutMessage;
-
   // Verify User
   final bool userState;
   final RequestState verifyUserState;
@@ -23,8 +19,6 @@ class AuthenticationState extends Equatable {
     this.signInMessage = '',
     this.signUpState = RequestState.stable,
     this.signUpMessage = '',
-    this.signOutState = RequestState.stable,
-    this.signOutMessage = '',
     this.userState = false,
     this.verifyUserState = RequestState.loading,
     this.verifyUserMessage = '',
@@ -39,10 +33,6 @@ class AuthenticationState extends Equatable {
     RequestState? signUpState,
     String? signUpMessage,
 
-    // Sign out state
-    RequestState? signOutState,
-    String? signOutMessage,
-
     // Verify User
     bool? userState,
     RequestState? verifyUserState,
@@ -51,8 +41,6 @@ class AuthenticationState extends Equatable {
     return AuthenticationState(
       signInMessage: signInMessage ?? this.signInMessage,
       signInState: signInState ?? this.signInState,
-      signOutMessage: signOutMessage ?? this.signOutMessage,
-      signOutState: signOutState ?? this.signOutState,
       signUpMessage: signUpMessage ?? this.signUpMessage,
       signUpState: signUpState ?? this.signUpState,
       userState: userState ?? this.userState,
@@ -65,9 +53,7 @@ class AuthenticationState extends Equatable {
   List<Object> get props => [
         signInMessage,
         signInState,
-        signOutMessage,
-        signOutState,
-        signUpMessage,
+               signUpMessage,
         signUpState,
         userState,
         verifyUserMessage,

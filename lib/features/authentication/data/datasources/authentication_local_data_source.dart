@@ -7,6 +7,7 @@ import '../../../../dependency_container.dart';
 abstract class BaseLocalDataSource {
   Future<Unit> cacheUser(String userEmail);
   Future<Unit> getCachedUser();
+  Future<Unit> deleteUserCachedData();
 }
 
 class LocalDataSource implements BaseLocalDataSource {
@@ -25,6 +26,18 @@ class LocalDataSource implements BaseLocalDataSource {
       return Future.value(unit);
     } else {
       throw EmptyCacheException();
+    }
+  }
+
+  @override
+  Future<Unit> deleteUserCachedData() async {
+    final cachedData =
+        sl<SharedPreferences>().getString(StringsManager.userCachedEmailKey);
+    if (cachedData != null) {
+      await sl<SharedPreferences>().remove(StringsManager.userCachedEmailKey);
+      return Future.value(unit);
+    } else {
+      throw EmptyCacheException;
     }
   }
 }
