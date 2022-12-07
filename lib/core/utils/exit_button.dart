@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mova/core/utils/request_state.dart';
-import 'package:mova/core/utils/snack_bar_util.dart';
+import 'request_state.dart';
+import 'snack_bar_util.dart';
 
 import '../../features/authentication/presentation/bloc/caching_user_data/caching_user_data_bloc.dart';
 import '../resources/colors_manager.dart';
@@ -15,6 +15,8 @@ class ExitButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocListener<CachingUserDataBloc, CachingUserDataState>(
+      listenWhen: (previous, current) =>
+          previous.deleteCacheUserDataState != current.deleteCacheUserDataState,
       listener: (context, state) {
         if (state.deleteCacheUserDataState == RequestState.error) {
           SnackBarUtil().getSnackBar(

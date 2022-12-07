@@ -14,6 +14,11 @@ class AuthenticationState extends Equatable {
   final RequestState verifyUserState;
   final String verifyUserMessage;
 
+
+  // Reset password
+  final RequestState resetPasswordState;
+  final String resetPasswordMessage;
+
   const AuthenticationState({
     this.signInState = RequestState.stable,
     this.signInMessage = '',
@@ -22,6 +27,8 @@ class AuthenticationState extends Equatable {
     this.userState = false,
     this.verifyUserState = RequestState.loading,
     this.verifyUserMessage = '',
+    this.resetPasswordState = RequestState.stable,
+    this.resetPasswordMessage = '',
   });
 
   AuthenticationState copyWith({
@@ -37,6 +44,13 @@ class AuthenticationState extends Equatable {
     bool? userState,
     RequestState? verifyUserState,
     String? verifyUserMessage,
+
+    
+  // Reset password
+   RequestState? resetPasswordState,
+   String? resetPasswordMessage,
+
+
   }) {
     return AuthenticationState(
       signInMessage: signInMessage ?? this.signInMessage,
@@ -46,6 +60,8 @@ class AuthenticationState extends Equatable {
       userState: userState ?? this.userState,
       verifyUserMessage: verifyUserMessage ?? this.verifyUserMessage,
       verifyUserState: verifyUserState ?? this.verifyUserState,
+      resetPasswordState: resetPasswordState ?? this.resetPasswordState,
+      resetPasswordMessage: resetPasswordMessage ?? this.resetPasswordMessage, 
     );
   }
 
@@ -53,10 +69,12 @@ class AuthenticationState extends Equatable {
   List<Object> get props => [
         signInMessage,
         signInState,
-               signUpMessage,
+        signUpMessage,
         signUpState,
         userState,
         verifyUserMessage,
         verifyUserState,
+        resetPasswordState,
+        resetPasswordMessage,
       ];
 }

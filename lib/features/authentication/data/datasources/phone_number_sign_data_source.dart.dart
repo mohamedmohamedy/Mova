@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:mova/core/utils/request_state.dart';
+import '../../../../core/utils/request_state.dart';
 
 class PhoneNumberAuthenticationDataSource {
   final fireAuth = FirebaseAuth.instance;

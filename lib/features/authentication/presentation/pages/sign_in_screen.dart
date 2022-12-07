@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../widgets/sign_screen_components/sign_in_screen_widgets.dart/forgot_password_button.dart';
+
+import '../../../../core/resources/routes.dart';
 import '../../../../core/resources/strings_manager.dart';
 import '../../../../core/resources/values_manager.dart';
-import '../../../../core/utils/snack_bar_util.dart';
-import '../../../../core/resources/routes.dart';
 import '../../../../core/utils/request_state.dart';
+import '../../../../core/utils/snack_bar_util.dart';
+import '../../../../core/utils/top_screen_back_arrow.dart';
 import '../../domain/entities/user.dart';
 import '../bloc/regular_sign/authentication_bloc.dart';
 import '../widgets/sign_screen_components/form_components/sign_form.dart';
@@ -14,25 +17,25 @@ import '../widgets/sign_screen_components/sign_screens_shared_components/main_lo
 import '../widgets/sign_screen_components/sign_screens_shared_components/sign_type_text.dart';
 import '../widgets/sign_screen_components/social_sign_components/social_sign_widget.dart';
 
-class SignUpScreen extends StatelessWidget {
-  const SignUpScreen({super.key});
+class SignInScreen extends StatelessWidget {
+  const SignInScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // TODO: enter the function of navigation after finishing on board screen.
-      appBar: AppBar(),
+      // appBar: AppBar(),
       body: BlocListener<AuthenticationBloc, AuthenticationState>(
         listenWhen: (previous, current) =>
-            previous.signUpState != current.signUpState,
+            previous.signInState != current.signInState,
         listener: (context, state) {
-          if (state.signUpState == RequestState.success) {
+          if (state.signInState == RequestState.success) {
             Navigator.of(context).pushNamed(Routes.verificationScreenKey);
           }
 
-          if (state.signUpState == RequestState.error) {
+          if (state.signInState == RequestState.error) {
             SnackBarUtil().getSnackBar(
                 context: context,
-                message: state.signUpMessage,
+                message: state.signInMessage,
                 color: Colors.red);
           }
         },
@@ -44,18 +47,24 @@ class SignUpScreen extends StatelessWidget {
                 hasScrollBody: false,
                 child: Column(
                   children: [
+                    // TODO: enter the function of navigation after finishing on board screen.
+                     TopScreenBackArrow(
+                      navigateFunction: () {},
+                    ),
                     const MainLogo(),
-                    const SignTypeText(signSentence: StringsManager.create),
+                    const SignTypeText(
+                        signSentence: StringsManager.loginToUrAccount),
                     SignForm(
                         signEvent: signEvent,
-                        buttonText: StringsManager.signUp),
+                        buttonText: StringsManager.signIn),
+                    const ForgotPasswordComponent(),
                     const Spacer(),
                     const AuthenticationDivider(),
                     const SocialSignWidget(),
                     const HaveAccountWidget(
-                      buttonText: StringsManager.signIn,
-                      question: StringsManager.alreadyHaveAnAccount,
-                      routeName: Routes.signInScreenKey,
+                      question: StringsManager.dontHaveAnAccount,
+                      buttonText: StringsManager.signUp,
+                      routeName: Routes.signUpScreenKey,
                     ),
                   ],
                 ),
@@ -68,8 +77,8 @@ class SignUpScreen extends StatelessWidget {
   }
 
   // this is the function used in the form helping widget that needs an Authentication event.
-  SignUpEvent signEvent(String email, String password) {
-    return SignUpEvent(
+  SignInEvent signEvent(String email, String password) {
+    return SignInEvent(
       user: UserEntity(
         email: email,
         password: password,
@@ -77,3 +86,4 @@ class SignUpScreen extends StatelessWidget {
     );
   }
 }
+

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mova/core/resources/values_manager.dart';
+import 'values_manager.dart';
 import 'package:sizer/sizer.dart';
 
 class FontsName {

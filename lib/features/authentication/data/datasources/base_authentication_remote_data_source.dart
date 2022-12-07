@@ -1,20 +1,21 @@
 import 'dart:async';
 
 import 'package:dartz/dartz.dart';
-import 'package:mova/core/utils/request_state.dart';
-import 'package:mova/features/authentication/data/datasources/firebase_sign_data_source.dart';
-import 'package:mova/features/authentication/data/datasources/phone_number_sign_data_source.dart.dart';
-import 'package:mova/features/authentication/data/datasources/social_sign_data_source.dart';
-import 'package:mova/features/authentication/data/models/user_model.dart';
+import '../../../../core/utils/request_state.dart';
+import 'firebase_sign_data_source.dart';
+import 'phone_number_sign_data_source.dart.dart';
+import 'social_sign_data_source.dart';
+import '../models/user_model.dart';
 
 abstract class BaseAuthenticationRemoteDataSource {
   Future<PhoneAuthState> signWithPhoneNumber(String phoneNumber);
+  Future<Unit> resetPassword(String email);
   Future<UserModel> signWithFacebook();
-  Future<UserModel> signWithGoogle();
+  Future<Unit> otpVerify(String code);
   Future<Unit> signIn(UserModel user);
   Future<Unit> signUp(UserModel user);
+  Future<UserModel> signWithGoogle();
   Future<bool> verifyUser();
-  Future<Unit> otpVerify(String code);
   Future<Unit> signOut();
 }
 
@@ -48,4 +49,7 @@ class AuthenticationRemoteDataSource
 
   @override
   Future<Unit> otpVerify(String code) => socialOtpVerification(code);
+
+  @override
+  Future<Unit> resetPassword(String email) => firebaseResetPassword(email);
 }

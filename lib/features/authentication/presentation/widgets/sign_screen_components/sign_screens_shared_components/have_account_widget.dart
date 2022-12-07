@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:mova/core/resources/fonts_manager.dart';
-import 'package:mova/core/resources/strings_manager.dart';
+import '../../../../../../core/resources/fonts_manager.dart';
 
 class HaveAccountWidget extends StatelessWidget {
-  const HaveAccountWidget({super.key});
+  final String question;
+  final String buttonText;
+  final String routeName;
+  const HaveAccountWidget({
+    super.key,
+    required this.question,
+    required this.buttonText,
+    required this.routeName,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -11,15 +18,16 @@ class HaveAccountWidget extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
-          StringsManager.alreadyHaveAnAccount,
+          question,
           style: Theme.of(context)
               .textTheme
               .headlineSmall!
               .copyWith(fontSize: FontsSize.s12),
         ),
         TextButton(
-          onPressed: () {},
-          child: const Text(StringsManager.signIn),
+          onPressed: () =>
+              Navigator.of(context).pushReplacementNamed(routeName),
+          child: Text(buttonText),
         )
       ],
     );

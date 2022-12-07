@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:mova/core/global/global_varibles.dart';
-import 'package:mova/core/resources/extensions.dart';
-import 'package:mova/core/resources/fonts_manager.dart';
-import 'package:mova/core/resources/styles_manager.dart';
+import '../../../../../../core/global/global_varibles.dart';
+import '../../../../../../core/resources/extensions.dart';
+import '../../../../../../core/resources/fonts_manager.dart';
+import '../../../../../../core/resources/styles_manager.dart';
 
 import '../../../../../../core/resources/strings_manager.dart';
 

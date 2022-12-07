@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:loading_indicator/loading_indicator.dart';
-import 'package:mova/core/resources/values_manager.dart';
+import '../resources/values_manager.dart';
 import 'package:sizer/sizer.dart';
 import '../resources/colors_manager.dart';
 

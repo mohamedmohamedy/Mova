@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
-import 'package:mova/core/network/failure.dart';
+import '../network/failure.dart';
 
 abstract class BaseUseCase<T, Parameters> {
   Future<Either<Failure, T>> call(Parameters parameters);

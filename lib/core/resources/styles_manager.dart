@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mova/core/resources/colors_manager.dart';
-import 'package:mova/core/resources/values_manager.dart';
+import 'colors_manager.dart';
+import 'values_manager.dart';
 import 'fonts_manager.dart';
 
 TextStyle _getTextStyle(

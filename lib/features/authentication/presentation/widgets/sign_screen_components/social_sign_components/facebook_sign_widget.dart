@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mova/features/authentication/presentation/bloc/caching_user_data/caching_user_data_bloc.dart';
+import '../../../bloc/caching_user_data/caching_user_data_bloc.dart';
 
 import '../../../../../../core/resources/colors_manager.dart';
 import '../../../../../../core/resources/routes.dart';

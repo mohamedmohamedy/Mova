@@ -1,12 +1,12 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mova/bloc_observer.dart';
-import 'package:mova/core/resources/routes.dart';
-import 'package:mova/core/resources/theme_manager.dart';
-import 'package:mova/features/authentication/presentation/bloc/phone_number_sign/phone_number_sign_bloc.dart';
-import 'package:mova/features/authentication/presentation/bloc/social_sign/social_sign_bloc.dart';
-import 'package:mova/features/authentication/presentation/pages/splash_screen.dart';
+import 'bloc_observer.dart';
+import 'core/resources/routes.dart';
+import 'core/resources/theme_manager.dart';
+import 'features/authentication/presentation/bloc/phone_number_sign/phone_number_sign_bloc.dart';
+import 'features/authentication/presentation/bloc/social_sign/social_sign_bloc.dart';
+import 'features/authentication/presentation/pages/splash_screen.dart';
 import 'dependency_container.dart' as di;
 import 'package:sizer/sizer.dart';
 

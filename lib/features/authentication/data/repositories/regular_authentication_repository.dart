@@ -1,12 +1,12 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:mova/core/resources/strings_manager.dart';
-import 'package:mova/core/network/network_info.dart';
-import 'package:mova/features/authentication/data/datasources/base_authentication_remote_data_source.dart';
-import 'package:mova/features/authentication/data/models/user_model.dart';
-import 'package:mova/features/authentication/domain/entities/user.dart';
-import 'package:mova/core/network/failure.dart';
+import '../../../../core/resources/strings_manager.dart';
+import '../../../../core/network/network_info.dart';
+import '../datasources/base_authentication_remote_data_source.dart';
+import '../models/user_model.dart';
+import '../../domain/entities/user.dart';
+import '../../../../core/network/failure.dart';
 import 'package:dartz/dartz.dart';
-import 'package:mova/features/authentication/domain/repositories/base_regular_authentication_repository.dart';
+import '../../domain/repositories/base_regular_authentication_repository.dart';
 
 import '../../../../core/global/type_def.dart';
 
@@ -22,14 +22,19 @@ class AuthenticationRepository implements BaseRegularAuthenticationRepository {
     return await _signMethod(() => _dataSource.signIn(userModel));
   }
 
-  //____________________________Sign up_______________________________________
+  //____________________________Sign up_____________________________________
   @override
   Future<Either<Failure, Unit>> signUp(UserEntity user) async {
     UserModel userModel = UserModel(email: user.email, password: user.password);
     return await _signMethod(() => _dataSource.signUp(userModel));
   }
 
-  //__________________________________Verify user__________________________________
+  //____________________________Reset password_____________________________________
+  @override
+  Future<Either<Failure, Unit>> resetPassword(String email) async =>
+      await _signMethod(() => _dataSource.resetPassword(email));
+      
+  //____________________________Verify user__________________________________
   @override
   Future<Either<Failure, bool>> verifyUser() async {
     if (await _deviceStatus.isConnected) {

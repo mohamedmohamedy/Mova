@@ -1,11 +1,11 @@
-import 'package:mova/features/authentication/domain/repositories/base_social_sign_repository.dart';
+import '../../domain/repositories/base_social_sign_repository.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:mova/core/resources/strings_manager.dart';
-import 'package:mova/core/network/network_info.dart';
-import 'package:mova/features/authentication/data/datasources/base_authentication_remote_data_source.dart';
-import 'package:mova/features/authentication/domain/entities/user.dart';
-import 'package:mova/core/network/failure.dart';
+import '../../../../core/resources/strings_manager.dart';
+import '../../../../core/network/network_info.dart';
+import '../datasources/base_authentication_remote_data_source.dart';
+import '../../domain/entities/user.dart';
+import '../../../../core/network/failure.dart';
 import 'package:dartz/dartz.dart';
 
 import '../../../../core/global/type_def.dart';

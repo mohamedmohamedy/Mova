@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:mova/core/resources/values_manager.dart';
-import 'package:mova/features/authentication/presentation/widgets/sign_screen_components/social_sign_components/phone_number_component_for_sign_up_screen.dart';
-import 'package:mova/features/authentication/presentation/widgets/sign_screen_components/social_sign_components/phone_number_widget.dart';
+import '../../../../../../core/resources/values_manager.dart';
+import 'phone_number_component_for_sign_up_screen.dart';
+import 'phone_number_widget.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../bloc/social_sign/social_sign_bloc.dart';
