@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mova/core/global/global_varibles.dart';
-import 'package:mova/core/resources/extensions.dart';
+import '../../../../../../core/global/global_varibles.dart';
+import '../../../../../../core/resources/extensions.dart';
 
 class RememberMeCheckBox extends StatefulWidget {
   final TextEditingController emailController;

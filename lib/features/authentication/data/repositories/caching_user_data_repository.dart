@@ -1,10 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:mova/core/resources/strings_manager.dart';
-import 'package:mova/core/network/exceptions.dart';
-import 'package:mova/core/network/failure.dart';
+import '../../../../core/resources/strings_manager.dart';
+import '../../../../core/network/exceptions.dart';
+import '../../../../core/network/failure.dart';
 import 'package:dartz/dartz.dart';
-import 'package:mova/features/authentication/data/datasources/base_authentication_remote_data_source.dart';
-import 'package:mova/features/authentication/domain/repositories/base_caching_user_data_repository.dart';
+import '../datasources/base_authentication_remote_data_source.dart';
+import '../../domain/repositories/base_caching_user_data_repository.dart';
 
 import '../datasources/authentication_local_data_source.dart';
 

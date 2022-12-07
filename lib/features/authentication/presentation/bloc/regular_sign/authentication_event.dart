@@ -17,5 +17,9 @@ class SignUpEvent extends AuthenticationEvent {
   const SignUpEvent({required this.user});
 }
 
-class VerifyUserEvent extends AuthenticationEvent {}
+class ResetPasswordEvent extends AuthenticationEvent {
+  final String email;
+  const ResetPasswordEvent({required this.email});
+}
 
+class VerifyUserEvent extends AuthenticationEvent {}

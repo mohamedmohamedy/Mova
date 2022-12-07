@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:mova/features/authentication/domain/entities/user.dart';
+import '../../features/authentication/domain/entities/user.dart';
 
 import '../../features/authentication/presentation/bloc/regular_sign/authentication_bloc.dart';
 

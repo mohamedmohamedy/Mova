@@ -1,8 +1,8 @@
 import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:mova/core/utils/snack_bar_util.dart';
-import 'package:mova/features/authentication/presentation/pages/on_boarding_screen.dart';
+import '../../../../core/utils/snack_bar_util.dart';
+import 'on_boarding_screen.dart';
 
 class VerifyingScreen extends StatefulWidget {
   const VerifyingScreen({super.key});

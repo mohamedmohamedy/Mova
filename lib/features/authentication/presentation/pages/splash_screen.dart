@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mova/core/resources/images_path.dart';
-import 'package:mova/core/resources/routes.dart';
-import 'package:mova/core/utils/loading_indicator_util.dart';
-import 'package:mova/core/utils/request_state.dart';
+import '../../../../core/resources/images_path.dart';
+import '../../../../core/resources/routes.dart';
+import '../../../../core/utils/loading_indicator_util.dart';
+import '../../../../core/utils/request_state.dart';
 
 import '../bloc/caching_user_data/caching_user_data_bloc.dart';
 
@@ -29,7 +29,7 @@ class _SplashScreenState extends State<SplashScreen> {
       body: BlocListener<CachingUserDataBloc, CachingUserDataState>(
         listener: (context, state) {
           if (state.getCacheUserDataState == RequestState.error) {
-            Navigator.of(context).pushReplacementNamed(Routes.signUpScreenKey);
+            Navigator.of(context).pushReplacementNamed(Routes.signInScreenKey);
           }
           if (state.getCacheUserDataState == RequestState.success) {
             Navigator.of(context)

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mova/core/global/type_def.dart';
-import 'package:mova/core/resources/values_manager.dart';
+import '../../../../../../core/global/type_def.dart';
+import '../../../../../../core/resources/values_manager.dart';
 import '../../../../../../core/utils/general_button.dart';
 import '../../../bloc/regular_sign/authentication_bloc.dart';
-import './email_form.dart';
+import 'email_form.dart';
 import 'password_form.dart';
 import 'remember_me_row.dart';
 

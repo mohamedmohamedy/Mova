@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:mova/core/resources/colors_manager.dart';
-import 'package:mova/core/resources/strings_manager.dart';
-import 'package:mova/core/resources/values_manager.dart';
+import '../../../../../../core/resources/colors_manager.dart';
+import '../../../../../../core/resources/strings_manager.dart';
+import '../../../../../../core/resources/values_manager.dart';
 import 'package:sizer/sizer.dart';
 
 class AuthenticationDivider extends StatelessWidget {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mova/core/resources/routes.dart';
+import '../../../../core/resources/routes.dart';
 
 import '../bloc/regular_sign/authentication_bloc.dart';
 

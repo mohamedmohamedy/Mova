@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:mova/features/authentication/domain/repositories/base_sign_with_phone_number_repository.dart';
+import '../../domain/repositories/base_sign_with_phone_number_repository.dart';
 
 import '../../../../core/network/failure.dart';
 import '../../../../core/network/network_info.dart';

@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:mova/features/authentication/domain/usecases/delete_user_cached_data_use_case.dart';
+import '../../../domain/usecases/delete_user_cached_data_use_case.dart';
 
 import '../../../../../core/global/base_use_case.dart';
 import '../../../../../core/utils/request_state.dart';

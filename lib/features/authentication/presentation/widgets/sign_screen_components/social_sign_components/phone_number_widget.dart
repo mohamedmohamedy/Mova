@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mova/core/global/global_varibles.dart';
-import 'package:mova/core/resources/strings_manager.dart';
-import 'package:mova/core/utils/loading_indicator_util.dart';
-import 'package:mova/core/utils/phone_number_Picker.dart';
-import 'package:mova/features/authentication/presentation/bloc/caching_user_data/caching_user_data_bloc.dart';
+import '../../../../../../core/global/global_varibles.dart';
+import '../../../../../../core/resources/strings_manager.dart';
+import '../../../../../../core/utils/loading_indicator_util.dart';
+import '../../../../../../core/utils/phone_number_Picker.dart';
+import '../../../bloc/caching_user_data/caching_user_data_bloc.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../../../../core/resources/colors_manager.dart';
