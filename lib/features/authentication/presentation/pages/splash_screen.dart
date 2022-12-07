@@ -29,7 +29,7 @@ class _SplashScreenState extends State<SplashScreen> {
       body: BlocListener<CachingUserDataBloc, CachingUserDataState>(
         listener: (context, state) {
           if (state.getCacheUserDataState == RequestState.error) {
-            Navigator.of(context).pushReplacementNamed(Routes.signInScreenKey);
+            Navigator.of(context).pushReplacementNamed(Routes.socialSignScreenKey);
           }
           if (state.getCacheUserDataState == RequestState.success) {
             Navigator.of(context)

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'request_state.dart';
-import 'snack_bar_util.dart';
 
 import '../../features/authentication/presentation/bloc/caching_user_data/caching_user_data_bloc.dart';
 import '../resources/colors_manager.dart';
 import '../resources/routes.dart';
+import 'request_state.dart';
+import 'snack_bar_util.dart';
 
 class ExitButton extends StatelessWidget {
   const ExitButton({

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+
 import '../../../../../../core/global/global_varibles.dart';
 import '../../../../../../core/resources/extensions.dart';
 import '../../../../../../core/resources/fonts_manager.dart';
-import '../../../../../../core/resources/styles_manager.dart';
-
 import '../../../../../../core/resources/strings_manager.dart';
+import '../../../../../../core/resources/styles_manager.dart';
 
 class EmailForm extends StatelessWidget {
   const EmailForm({

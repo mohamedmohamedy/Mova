@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../widgets/sign_screen_components/sign_in_screen_widgets.dart/forgot_password_button.dart';
 
 import '../../../../core/resources/routes.dart';
 import '../../../../core/resources/strings_manager.dart';
@@ -11,6 +10,7 @@ import '../../../../core/utils/top_screen_back_arrow.dart';
 import '../../domain/entities/user.dart';
 import '../bloc/regular_sign/authentication_bloc.dart';
 import '../widgets/sign_screen_components/form_components/sign_form.dart';
+import '../widgets/sign_screen_components/sign_in_screen_widgets.dart/forgot_password_button.dart';
 import '../widgets/sign_screen_components/sign_screens_shared_components/authentication_divider.dart';
 import '../widgets/sign_screen_components/sign_screens_shared_components/have_account_widget.dart';
 import '../widgets/sign_screen_components/sign_screens_shared_components/main_logo.dart';
@@ -59,7 +59,7 @@ class SignInScreen extends StatelessWidget {
                         buttonText: StringsManager.signIn),
                     const ForgotPasswordComponent(),
                     const Spacer(),
-                    const AuthenticationDivider(),
+                    const AuthenticationDivider(text: StringsManager.authenticationDividerText,),
                     const SocialSignWidget(),
                     const HaveAccountWidget(
                       question: StringsManager.dontHaveAnAccount,

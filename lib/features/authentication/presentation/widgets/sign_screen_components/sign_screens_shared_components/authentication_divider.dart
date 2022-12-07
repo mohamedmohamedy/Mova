@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import '../../../../../../core/resources/colors_manager.dart';
-import '../../../../../../core/resources/strings_manager.dart';
 import '../../../../../../core/resources/values_manager.dart';
 import 'package:sizer/sizer.dart';
 
 class AuthenticationDivider extends StatelessWidget {
-  const AuthenticationDivider({super.key});
+  final String text;
+  const AuthenticationDivider({super.key, required this.text});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +16,7 @@ class AuthenticationDivider extends StatelessWidget {
           const DividerLine(),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: DoubleManager.d_2.w),
-            child: Text(StringsManager.authenticationDividerText,
+            child: Text(text,
                 style: Theme.of(context).textTheme.headlineMedium),
           ),
           const DividerLine(),

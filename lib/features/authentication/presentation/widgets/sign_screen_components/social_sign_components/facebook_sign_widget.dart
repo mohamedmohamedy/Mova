@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../bloc/caching_user_data/caching_user_data_bloc.dart';
 
 import '../../../../../../core/resources/colors_manager.dart';
 import '../../../../../../core/resources/routes.dart';
 import '../../../../../../core/utils/loading_indicator_util.dart';
 import '../../../../../../core/utils/request_state.dart';
 import '../../../../../../core/utils/snack_bar_util.dart';
+import '../../../bloc/caching_user_data/caching_user_data_bloc.dart';
 import '../../../bloc/social_sign/social_sign_bloc.dart';
 
 class FacebookSignWidget extends StatelessWidget {
