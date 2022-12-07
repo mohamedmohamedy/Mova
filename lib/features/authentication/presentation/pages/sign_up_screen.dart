@@ -50,7 +50,7 @@ class SignUpScreen extends StatelessWidget {
                         signEvent: signEvent,
                         buttonText: StringsManager.signUp),
                     const Spacer(),
-                    const AuthenticationDivider(),
+                    const AuthenticationDivider(text: StringsManager.authenticationDividerText),
                     const SocialSignWidget(),
                     const HaveAccountWidget(
                       buttonText: StringsManager.signIn,

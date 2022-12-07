@@ -24,4 +24,7 @@ class FontsSize {
   static double s20 = DoubleManager.d_20.sp;
   static double s22 = DoubleManager.d_22.sp;
   static double s25 = DoubleManager.d_25.sp;
+  static double s30 = DoubleManager.d_30.sp;
+  static double s35 = DoubleManager.d_35.sp;
+  static double s40 = DoubleManager.d_40.sp;
 }

@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
-import '../entities/user.dart';
 
 import '../../../../core/network/failure.dart';
+import '../entities/user.dart';
 
 abstract class BaseRegularAuthenticationRepository {
   Future<Either<Failure, Unit>> signIn(UserEntity user);

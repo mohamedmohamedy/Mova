@@ -1,14 +1,14 @@
-import 'package:firebase_auth/firebase_auth.dart';
-import '../../../../core/resources/strings_manager.dart';
-import '../../../../core/network/network_info.dart';
-import '../datasources/base_authentication_remote_data_source.dart';
-import '../models/user_model.dart';
-import '../../domain/entities/user.dart';
-import '../../../../core/network/failure.dart';
 import 'package:dartz/dartz.dart';
-import '../../domain/repositories/base_regular_authentication_repository.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 import '../../../../core/global/type_def.dart';
+import '../../../../core/network/failure.dart';
+import '../../../../core/network/network_info.dart';
+import '../../../../core/resources/strings_manager.dart';
+import '../../domain/entities/user.dart';
+import '../../domain/repositories/base_regular_authentication_repository.dart';
+import '../datasources/base_authentication_remote_data_source.dart';
+import '../models/user_model.dart';
 
 class AuthenticationRepository implements BaseRegularAuthenticationRepository {
   final BaseNetworkInfo _deviceStatus;

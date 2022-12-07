@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:sizer/sizer.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sizer/sizer.dart';
+
 import '../../../../../../core/global/type_def.dart';
 import '../../../../../../core/resources/values_manager.dart';
 import '../../../../../../core/utils/general_button.dart';
