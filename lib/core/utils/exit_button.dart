@@ -26,7 +26,7 @@ class ExitButton extends StatelessWidget {
         }
 
         if (state.deleteCacheUserDataState == RequestState.success) {
-          Navigator.of(context).pushNamed(Routes.signUpScreenKey);
+          Navigator.of(context).pushNamed(Routes.socialSignScreenKey);
         }
       },
       child: Center(

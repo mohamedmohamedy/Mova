@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mova/core/resources/values_manager.dart';
+import 'package:sizer/sizer.dart';
 import '../../../../core/resources/images_path.dart';
 import '../../../../core/resources/routes.dart';
 import '../../../../core/utils/loading_indicator_util.dart';
@@ -18,7 +20,8 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(const Duration(seconds: 5)).then((_) =>
+    Future.delayed(const Duration(seconds: IntManager.i_6))
+    .then((_) =>
         BlocProvider.of<CachingUserDataBloc>(context)
             .add(GetCachedUserDataEvent()));
   }
@@ -29,7 +32,8 @@ class _SplashScreenState extends State<SplashScreen> {
       body: BlocListener<CachingUserDataBloc, CachingUserDataState>(
         listener: (context, state) {
           if (state.getCacheUserDataState == RequestState.error) {
-            Navigator.of(context).pushReplacementNamed(Routes.socialSignScreenKey);
+            Navigator.of(context)
+                .pushReplacementNamed(Routes.socialSignScreenKey);
           }
           if (state.getCacheUserDataState == RequestState.success) {
             Navigator.of(context)
@@ -39,15 +43,14 @@ class _SplashScreenState extends State<SplashScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
-          children: const [
+          children: [
             Center(
                 child: Image(
-              image: AssetImage(ImagesPath.logoPath),
-              height: 200,
-              width: 200,
+              image: const AssetImage(ImagesPath.logoPath),
+              height: DoubleManager.d_50.h,
+              width: DoubleManager.d_50.w,
             )),
-            SizedBox(height: 50),
-            LoadingIndicatorUtil(),
+            const LoadingIndicatorUtil(),
           ],
         ),
       ),

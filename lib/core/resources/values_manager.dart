@@ -32,5 +32,6 @@ class DoubleManager {
 }
 
 class IntManager {
+  static const int i_2 = 2;
   static const int i_6 = 6;
 }
