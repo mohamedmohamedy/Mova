@@ -38,7 +38,7 @@ class FireBaseSignDataSource {
     return Future.value(false);
   }
 
-//_________________ verify user___________________________________
+//_________________ Reset password ___________________________________
   Future<Unit> firebaseResetPassword(String email) async {
     await _fireAuth.sendPasswordResetEmail(email: email);
     return Future.value(unit);

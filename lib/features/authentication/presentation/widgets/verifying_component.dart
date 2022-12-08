@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../core/resources/routes.dart';
+import 'package:mova/core/resources/images_path.dart';
+import 'package:mova/core/utils/top_screen_back_arrow.dart';
+import 'package:sizer/sizer.dart';
 
+import '../../../../core/resources/routes.dart';
+import '../../../../core/resources/strings_manager.dart';
+import '../../../../core/resources/values_manager.dart';
 import '../bloc/regular_sign/authentication_bloc.dart';
 
 class VerifyingComponent extends StatelessWidget {
@@ -14,35 +19,23 @@ class VerifyingComponent extends StatelessWidget {
     return BlocBuilder<AuthenticationBloc, AuthenticationState>(
       buildWhen: (previous, current) => previous.userState != current.userState,
       builder: (context, state) {
-        return Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            const Text('A verification email has been sent to your email'),
-            ElevatedButton.icon(
-              onPressed: () {},
-              icon: const Icon(
-                Icons.email,
-                size: 32,
+        return Padding(
+          padding: EdgeInsets.symmetric(horizontal: DoubleManager.d_5.w),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              TopScreenBackArrow(
+                  navigateFunction: () => Navigator.of(context)
+                      .pushReplacementNamed(Routes.signUpScreenKey)),
+              Image.asset(ImagesPath.verificationPath),
+              Text(
+                StringsManager.verifyEmailMessage,
+                style: Theme.of(context).textTheme.headlineMedium,
+                textAlign: TextAlign.center,
               ),
-              label: const Text(
-                'Resent E-mail',
-                style: TextStyle(fontSize: 24),
-              ),
-            ),
-            ElevatedButton.icon(
-              onPressed: () =>
-                  Navigator.of(context).pushNamed(Routes.verificationScreenKey),
-              icon: const Icon(
-                Icons.arrow_back,
-                size: 32,
-              ),
-              label: const Text(
-                'Resent',
-                style: TextStyle(fontSize: 24),
-              ),
-            ),
-          ],
+            ],
+          ),
         );
       },
     );

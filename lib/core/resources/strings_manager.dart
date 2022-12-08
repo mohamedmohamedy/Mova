@@ -11,6 +11,8 @@ class StringsManager {
       'Please, Enter your E-mail address So that we could send you an email to reset your password';
   static const String resetPasswordAlertMessage =
       'A reset password email is sent to your Email, Please rest your password and Try to sign in again';
+  static const String verifyEmailMessage =
+      'A verification email has been sent to your email address, Please open your inbox and verify your email';
   static const String emptyCacheFailureMessage = 'There is no cached user data';
   static const String phoneNumberMessage = 'Please, enter your phone number';
   static const String passwordValidateMessage = 'please enter your Password';
