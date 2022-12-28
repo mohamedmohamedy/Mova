@@ -22,54 +22,53 @@ class SignInScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      // appBar: AppBar(),
-      body: BlocListener<AuthenticationBloc, AuthenticationState>(
-        listenWhen: (previous, current) =>
-            previous.signInState != current.signInState,
-        listener: (context, state) {
-          if (state.signInState == RequestState.success) {
-            Navigator.of(context).pushNamed(Routes.verificationScreenKey);
-          }
+    return SafeArea(
+      child: Scaffold(
+        body: BlocListener<AuthenticationBloc, AuthenticationState>(
+          listenWhen: (previous, current) =>
+              previous.signInState != current.signInState,
+          listener: (context, state) {
+            if (state.signInState == RequestState.success) {
+              Navigator.of(context).pushNamed(Routes.verificationScreenKey);
+            }
 
-          if (state.signInState == RequestState.error) {
-            SnackBarUtil().getSnackBar(
-                context: context,
-                message: state.signInMessage,
-                color: Colors.red);
-          }
-        },
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: DoubleManager.d_16),
-          child: CustomScrollView(
-            slivers: [
-              SliverFillRemaining(
-                hasScrollBody: false,
-                child: Column(
-                  children: [
-                    // TODO: enter the function of navigation after finishing on board screen.
-                     TopScreenBackArrow(
-                      navigateFunction: () {},
-                    ),
-                    const MainLogo(),
-                    const SignTypeText(
-                        signSentence: StringsManager.loginToUrAccount),
-                    SignForm(
-                        signEvent: signEvent,
-                        buttonText: StringsManager.signIn),
-                    const ForgotPasswordComponent(),
-                    const Spacer(),
-                    const AuthenticationDivider(text: StringsManager.authenticationDividerText,),
-                    const SocialSignWidget(),
-                    const HaveAccountWidget(
-                      question: StringsManager.dontHaveAnAccount,
-                      buttonText: StringsManager.signUp,
-                      routeName: Routes.signUpScreenKey,
-                    ),
-                  ],
+            if (state.signInState == RequestState.error) {
+              SnackBarUtil().getSnackBar(
+                  context: context,
+                  message: state.signInMessage,
+                  color: Colors.red);
+            }
+          },
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: DoubleManager.d_16),
+            child: CustomScrollView(
+              slivers: [
+                SliverFillRemaining(
+                  hasScrollBody: false,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      const MainLogo(),
+                      const SignTypeText(
+                          signSentence: StringsManager.loginToUrAccount),
+                      SignForm(
+                          signEvent: signEvent,
+                          buttonText: StringsManager.signIn),
+                      const ForgotPasswordComponent(),
+                      const AuthenticationDivider(
+                        text: StringsManager.authenticationDividerText,
+                      ),
+                      const SocialSignWidget(),
+                      const HaveAccountWidget(
+                        question: StringsManager.dontHaveAnAccount,
+                        buttonText: StringsManager.signUp,
+                        routeName: Routes.signUpScreenKey,
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
@@ -86,4 +85,3 @@ class SignInScreen extends StatelessWidget {
     );
   }
 }
-

@@ -46,3 +46,4 @@ app.*.map.json
 
 \android\app\src\main\res\values\strings.xml
 \android\app\google-services.json
+\lib\core\network\api_key.dart

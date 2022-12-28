@@ -22,74 +22,74 @@ class SocialSignScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: CustomScrollView(
-        slivers: [
-          SliverFillRemaining(
-            hasScrollBody: false,
-            child: Padding(
-              padding: EdgeInsets.symmetric(
-                  vertical: DoubleManager.d_1.h,
-                  horizontal: DoubleManager.d_5.w),
-              child: Column(
-                children: [
-                  // TODO: Build method to navigate.
-                  TopScreenBackArrow(navigateFunction: () {}),
-                  Image.asset(
-                    ImagesPath.socialSignPath,
-                    fit: BoxFit.cover,
-                    height: DoubleManager.d_30.h,
-                    width: DoubleManager.d_60.w,
-                  ),
-                  Text(
-                    StringsManager.letsDiveInText,
-                    style: Theme.of(context)
-                        .textTheme
-                        .headlineLarge!
-                        .copyWith(fontSize: FontsSize.s30),
-                  ),
-                  FacebookSignWidget(
-                      facebookSignView: SocialSignScreenButtons(
-                    signEvent: SignWithFacebookEvent(),
-                    icon: FontAwesomeIcons.facebook,
-                    signType: StringsManager.facebook,
-                  )),
-                  SizedBox(height: DoubleManager.d_2.h),
-                  GoogleSignWidget(
-                      googleSignView: SocialSignScreenButtons(
-                    signEvent: SignWithGoogleEvent(),
-                    icon: FontAwesomeIcons.google,
-                    signType: StringsManager.google,
-                  )),
-                  SizedBox(height: DoubleManager.d_2.h),
-                  const SignWithPhoneNumberWidget(
-                      phoneNumberSignView: SignScreenPhoneView()),
-                  const AuthenticationDivider(text: StringsManager.or),
-                  Padding(
-                    padding:
-                        EdgeInsets.symmetric(vertical: DoubleManager.d_1.h),
-                    child: ElevatedButton(
-                      onPressed: () => Navigator.of(context)
-                          .pushNamed(Routes.signInScreenKey),
-                      child: Text(
-                        StringsManager.signInWithPassword,
-                        style: Theme.of(context)
-                            .textTheme
-                            .headlineSmall!
-                            .copyWith(fontSize: FontsSize.s14),
+    return SafeArea(
+      child: Scaffold(
+        body: CustomScrollView(
+          slivers: [
+            SliverFillRemaining(
+              hasScrollBody: false,
+              child: Padding(
+                padding: EdgeInsets.symmetric(
+                    vertical: DoubleManager.d_1.h,
+                    horizontal: DoubleManager.d_5.w),
+                child: Column(
+                  children: [
+                    Image.asset(
+                      ImagesPath.socialSignPath,
+                      fit: BoxFit.cover,
+                      height: DoubleManager.d_30.h,
+                      width: DoubleManager.d_60.w,
+                    ),
+                    Text(
+                      StringsManager.letsDiveInText,
+                      style: Theme.of(context)
+                          .textTheme
+                          .headlineLarge!
+                          .copyWith(fontSize: FontsSize.s30),
+                    ),
+                    FacebookSignWidget(
+                        facebookSignView: SocialSignScreenButtons(
+                      signEvent: SignWithFacebookEvent(),
+                      icon: FontAwesomeIcons.facebook,
+                      signType: StringsManager.facebook,
+                    )),
+                    SizedBox(height: DoubleManager.d_2.h),
+                    GoogleSignWidget(
+                        googleSignView: SocialSignScreenButtons(
+                      signEvent: SignWithGoogleEvent(),
+                      icon: FontAwesomeIcons.google,
+                      signType: StringsManager.google,
+                    )),
+                    SizedBox(height: DoubleManager.d_2.h),
+                    const SignWithPhoneNumberWidget(
+                        phoneNumberSignView: SignScreenPhoneView()),
+                    const AuthenticationDivider(text: StringsManager.or),
+                    Padding(
+                      padding:
+                          EdgeInsets.symmetric(vertical: DoubleManager.d_1.h),
+                      child: ElevatedButton(
+                        onPressed: () => Navigator.of(context)
+                            .pushNamed(Routes.signInScreenKey),
+                        child: Text(
+                          StringsManager.signInWithPassword,
+                          style: Theme.of(context)
+                              .textTheme
+                              .headlineSmall!
+                              .copyWith(fontSize: FontsSize.s14),
+                        ),
                       ),
                     ),
-                  ),
-                  const HaveAccountWidget(
-                    question: StringsManager.dontHaveAnAccount,
-                    buttonText: StringsManager.signUp,
-                    routeName: Routes.signUpScreenKey,
-                  ),
-                ],
+                    const HaveAccountWidget(
+                      question: StringsManager.dontHaveAnAccount,
+                      buttonText: StringsManager.signUp,
+                      routeName: Routes.signUpScreenKey,
+                    ),
+                  ],
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

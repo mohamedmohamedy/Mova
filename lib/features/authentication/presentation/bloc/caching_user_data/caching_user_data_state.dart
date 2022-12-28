@@ -8,7 +8,7 @@ class CachingUserDataState extends Equatable {
   // get cached user data
   final RequestState getCacheUserDataState;
   final String getCacheUserDataMessage;
-  
+
   // delete cached user data
   final RequestState deleteCacheUserDataState;
   final String deleteCacheUserDataMessage;
@@ -30,7 +30,7 @@ class CachingUserDataState extends Equatable {
     // get cached user state
     RequestState? getCacheUserDataState,
     String? getCacheUserDataMessage,
-    
+
     // delete cached user state
     RequestState? deleteCacheUserDataState,
     String? deleteCacheUserDataMessage,

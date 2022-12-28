@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mova/features/now_playing_movies/presentation/bloc/now_playing_movies_bloc.dart';
 import 'bloc_observer.dart';
 import 'core/resources/routes.dart';
 import 'core/resources/theme_manager.dart';
@@ -28,9 +29,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (_) => di.sl<AuthenticationBloc>()),
+        BlocProvider(create: (_) => di.sl<NowPlayingMoviesBloc>()),
         BlocProvider(create: (_) => di.sl<CachingUserDataBloc>()),
         BlocProvider(create: (_) => di.sl<PhoneNumberSignBloc>()),
+        BlocProvider(create: (_) => di.sl<AuthenticationBloc>()),
         BlocProvider(create: (_) => di.sl<SocialSignBloc>()),
       ],
       child: Sizer(

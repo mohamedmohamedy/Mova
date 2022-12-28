@@ -1,8 +1,11 @@
 class DoubleManager {
   static const double d_003 = 0.03;
   static const double d_005 = 0.05;
+  static const double d_015 = 0.15;
   static const double d_05 = 0.5;
+  static const double d_03 = 0.3;
   static const double d_02 = 0.2;
+  static const double d_0 = 0;
   static const double d_1 = 1;
   static const double d_2 = 2;
   static const double d_3 = 3;
@@ -29,9 +32,14 @@ class DoubleManager {
   static const double d_70 = 70;
   static const double d_100 = 100;
   static const double d_150 = 150;
+  static const double d_500 = 500;
 }
 
 class IntManager {
+  static const int i_0 = 0;
   static const int i_2 = 2;
+  static const int i_3 = 3;
   static const int i_6 = 6;
+  static const int i_30 = 30;
+  static const int i_500 = 500;
 }

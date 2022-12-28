@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mova/core/resources/values_manager.dart';
@@ -48,7 +47,7 @@ class VerifyScreen extends StatelessWidget {
                 );
               }
               Navigator.of(context)
-                  .pushReplacementNamed(Routes.onBoardingScreenKey);
+                  .pushNamedAndRemoveUntil(Routes.onBoardingScreenKey, (route) => false);
               break;
           }
 
