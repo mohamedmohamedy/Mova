@@ -35,7 +35,7 @@ class SignWithPhoneNumberWidget extends StatelessWidget {
           BlocProvider.of<CachingUserDataBloc>(context).add(CacheUserDataEvent(
               userEmail: globalVariables.getGlobalUserEmail));
           Navigator.of(context)
-              .pushReplacementNamed(Routes.onBoardingScreenKey);
+              .pushNamedAndRemoveUntil(Routes.onBoardingScreenKey, (route) => false);
         }
 
         // If the user didn't validated automatically then an alert dialog will pop to enter the code.
@@ -46,7 +46,7 @@ class SignWithPhoneNumberWidget extends StatelessWidget {
           BlocProvider.of<CachingUserDataBloc>(context).add(CacheUserDataEvent(
               userEmail: globalVariables.getGlobalUserEmail));
           Navigator.of(context)
-              .pushReplacementNamed(Routes.onBoardingScreenKey);
+              .pushNamedAndRemoveUntil(Routes.onBoardingScreenKey, (route) => false);
         }
 
         if (state.otpVerificationState == RequestState.error) {

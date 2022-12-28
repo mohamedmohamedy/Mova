@@ -1,6 +1,12 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get_it/get_it.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
+import 'package:mova/core/network/dio_helper.dart';
+import 'package:mova/features/now_playing_movies/data/datasources/now_playing.dart';
+import 'package:mova/features/now_playing_movies/data/repositories/now_playing.dart';
+import 'package:mova/features/now_playing_movies/domain/repositories/now_playing.dart';
+import 'package:mova/features/now_playing_movies/domain/usecases/now_playing.dart';
+import 'package:mova/features/now_playing_movies/presentation/bloc/now_playing_movies_bloc.dart';
 import 'core/network/network_info.dart';
 import 'features/authentication/data/datasources/base_authentication_remote_data_source.dart';
 import 'features/authentication/data/datasources/authentication_local_data_source.dart';
@@ -38,11 +44,13 @@ Future<void> init() async {
   sl.registerFactory(() => CachingUserDataBloc(sl(), sl(), sl()));
   sl.registerFactory(() => PhoneNumberSignBloc(sl(), sl()));
   sl.registerFactory(() => SocialSignBloc(sl(), sl()));
+  sl.registerFactory(() => NowPlayingMoviesBloc(sl()));
 
   /// Use cases
   sl.registerLazySingleton(() => DeleteUserCachedDataUseCase(sl()));
   sl.registerLazySingleton(() => SignWithPhoneNumberUseCase(sl()));
   sl.registerLazySingleton(() => SignWithFacebookUseCase(sl()));
+  sl.registerLazySingleton(() => NowPlayingMoviesUseCase(sl()));
   sl.registerLazySingleton(() => OtpVerificationUseCase(sl()));
   sl.registerLazySingleton(() => SignWithGoogleUseCase(sl()));
   sl.registerLazySingleton(() => GetCachedUserUseCase(sl()));
@@ -62,12 +70,18 @@ Future<void> init() async {
   sl.registerLazySingleton<BaseSignWithPhoneNumberRepository>(
       () => SignWithPhoneNumberRepository(sl(), sl()));
 
+  sl.registerLazySingleton<BaseGetNowPlayingMovieRepository>(
+      () => NowPlayingMoviesRepository(sl(), sl()));
+
   /// Data sources
   sl.registerLazySingleton<BaseAuthenticationRemoteDataSource>(
       () => AuthenticationRemoteDataSource());
   sl.registerLazySingleton<BaseLocalDataSource>(() => LocalDataSource());
+  sl.registerLazySingleton<BaseNowPlayingMoviesDataSource>(
+      () => NowPlayingMoviesDataSource(sl()));
 
   /// External
+  sl.registerLazySingleton<BaseDioHelper>(() => DioHelper());
   sl.registerLazySingleton(() => FirebaseAuth);
   // sl.registerLazySingleton(() => FacebookAuth);
   sl.registerLazySingleton(() => InternetConnectionChecker());

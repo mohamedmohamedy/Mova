@@ -13,11 +13,21 @@ class StringsManager {
       'A reset password email is sent to your Email, Please rest your password and Try to sign in again';
   static const String verifyEmailMessage =
       'A verification email has been sent to your email address, Please open your inbox and verify your email';
+
+  static const String onBoardingScreenSliderText1 =
+      'The best movies streaming app of the century to make your days great!';
+
+  static const String onBoardingScreenSliderText2 =
+      'We provide you with the latest movies in cinemas and with top movies in rating ';
+
+  static const String onBoardingScreenSliderText3 =
+      'A friendly app for cinema lovers helping them with what they love';
   static const String emptyCacheFailureMessage = 'There is no cached user data';
   static const String phoneNumberMessage = 'Please, enter your phone number';
   static const String passwordValidateMessage = 'please enter your Password';
   static const String emailValidateMessage = 'please enter your E-mail';
   static const String alreadyHaveAnAccount = 'Already have an account?';
+  static const String welcomeToMova = 'Welcome to Mova';
   static const String authenticationDividerText = 'or continue with';
   static const String dontHaveAnAccount = 'Don\'t have an account?';
   static const String signInWithPassword = 'Sign in with password';
@@ -29,6 +39,7 @@ class StringsManager {
   static const String create = 'Create Your Account';
   static const String continueWith = 'Continue with';
   static const String rememberMe = 'Remember me';
+  static const String getStarted = 'Get started';
   static const String password = 'Password';
   static const String facebook = 'Facebook';
   static const String signIn = 'Sign in';

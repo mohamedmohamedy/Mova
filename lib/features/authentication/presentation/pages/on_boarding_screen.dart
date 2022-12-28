@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mova/core/resources/colors_manager.dart';
 import 'package:mova/core/resources/fonts_manager.dart';
 import 'package:mova/core/resources/images_path.dart';
+import 'package:mova/core/resources/routes.dart';
 import 'package:mova/core/resources/values_manager.dart';
 import 'package:sizer/sizer.dart';
 
@@ -25,6 +26,10 @@ class OnBoardingScreen extends StatelessWidget {
           ),
           Image.asset(ImagesPath.verificationSuccessPath),
           const ExitButton(),
+          IconButton(
+              onPressed: () => Navigator.of(context)
+                  .pushReplacementNamed(Routes.nowPlayingMoviesScreenKey),
+              icon: const Icon(Icons.arrow_back))
         ],
       ),
     ));

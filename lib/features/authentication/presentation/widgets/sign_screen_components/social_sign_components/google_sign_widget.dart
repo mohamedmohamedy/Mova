@@ -31,7 +31,7 @@ class GoogleSignWidget extends StatelessWidget {
             CacheUserDataEvent(userEmail: state.googleUserData.email),
           );
           Navigator.of(context)
-              .pushReplacementNamed(Routes.onBoardingScreenKey);
+              .pushNamedAndRemoveUntil(Routes.onBoardingScreenKey, (route) => false);
         }
       },
       buildWhen: (previous, current) =>

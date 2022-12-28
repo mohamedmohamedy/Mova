@@ -30,7 +30,7 @@ class FacebookSignWidget extends StatelessWidget {
             CacheUserDataEvent(userEmail: state.facebookUserData.email),
           );
           Navigator.of(context)
-              .pushReplacementNamed(Routes.onBoardingScreenKey);
+              .pushNamedAndRemoveUntil(Routes.onBoardingScreenKey, (route) => false);
         }
       },
       buildWhen: (previous, current) =>
