@@ -5,7 +5,6 @@ import '../../../../core/resources/images_path.dart';
 import '../../../../core/resources/routes.dart';
 import '../../../../core/resources/strings_manager.dart';
 import '../../../../core/resources/values_manager.dart';
-import '../../../../core/utils/top_screen_back_arrow.dart';
 import '../bloc/social_sign/social_sign_bloc.dart';
 import '../widgets/sign_screen_components/sign_screens_shared_components/authentication_divider.dart';
 import '../widgets/sign_screen_components/social_sign_components/facebook_sign_widget.dart';
