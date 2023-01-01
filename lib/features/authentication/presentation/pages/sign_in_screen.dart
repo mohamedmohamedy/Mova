@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mova/core/global/global_varibles.dart';
+import 'package:mova/features/authentication/presentation/bloc/caching_user_data/caching_user_data_bloc.dart';
 
 import '../../../../core/resources/routes.dart';
 import '../../../../core/resources/strings_manager.dart';
 import '../../../../core/resources/values_manager.dart';
 import '../../../../core/utils/request_state.dart';
 import '../../../../core/utils/snack_bar_util.dart';
-import '../../../../core/utils/top_screen_back_arrow.dart';
 import '../../domain/entities/user.dart';
 import '../bloc/regular_sign/authentication_bloc.dart';
 import '../widgets/sign_screen_components/form_components/sign_form.dart';
@@ -22,6 +23,7 @@ class SignInScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final globalVariables = GlobalVariables();
     return SafeArea(
       child: Scaffold(
         body: BlocListener<AuthenticationBloc, AuthenticationState>(
@@ -29,7 +31,12 @@ class SignInScreen extends StatelessWidget {
               previous.signInState != current.signInState,
           listener: (context, state) {
             if (state.signInState == RequestState.success) {
-              Navigator.of(context).pushNamed(Routes.verificationScreenKey);
+              if (globalVariables.getUserDecision == true) {
+                BlocProvider.of<CachingUserDataBloc>(context).add(
+                    CacheUserDataEvent(
+                        userEmail: globalVariables.getGlobalUserEmail));
+              }
+              Navigator.of(context).pushNamed(Routes.onBoardingScreenKey);
             }
 
             if (state.signInState == RequestState.error) {
