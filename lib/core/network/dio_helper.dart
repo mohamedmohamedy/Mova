@@ -1,8 +1,8 @@
 import 'dart:developer';
 
 import 'package:dio/dio.dart';
-import 'package:mova/core/network/api_constance.dart';
-import 'package:mova/core/network/exceptions.dart';
+import 'api_constance.dart';
+import 'exceptions.dart';
 
 abstract class BaseDioHelper {
   Future<dynamic> post({

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:mova/core/resources/images_path.dart';
-import 'package:mova/core/resources/routes.dart';
-import 'package:mova/core/resources/values_manager.dart';
-import 'package:mova/core/utils/top_screen_back_arrow.dart';
+import '../resources/images_path.dart';
+import '../resources/routes.dart';
+import '../resources/values_manager.dart';
+import 'top_screen_back_arrow.dart';
 import 'package:sizer/sizer.dart';
 
 class ErrorScreen extends StatelessWidget {
@@ -15,7 +15,7 @@ class ErrorScreen extends StatelessWidget {
       appBar: AppBar(
         leading: TopScreenBackArrow(
           navigateFunction: () => Navigator.of(context).pushNamedAndRemoveUntil(
-              Routes.onBoardingScreenKey, (route) => false),
+              Routes.nowPlayingMoviesScreenKey, (route) => false),
         ),
       ),
       body: Padding(

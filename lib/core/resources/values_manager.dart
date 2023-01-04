@@ -41,5 +41,6 @@ class IntManager {
   static const int i_3 = 3;
   static const int i_6 = 6;
   static const int i_30 = 30;
+  static const int i_300 = 300;
   static const int i_500 = 500;
 }
