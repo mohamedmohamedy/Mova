@@ -1,18 +1,14 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mova/features/now_playing_movies/presentation/bloc/now_playing_movies_bloc.dart';
+import 'package:mova/core/global/bloc_providers.dart';
 import 'bloc_observer.dart';
 import 'core/resources/routes.dart';
 import 'core/resources/theme_manager.dart';
-import 'features/authentication/presentation/bloc/phone_number_sign/phone_number_sign_bloc.dart';
-import 'features/authentication/presentation/bloc/social_sign/social_sign_bloc.dart';
-import 'features/authentication/presentation/pages/splash_screen.dart';
 import 'dependency_container.dart' as di;
 import 'package:sizer/sizer.dart';
 
-import 'features/authentication/presentation/bloc/caching_user_data/caching_user_data_bloc.dart';
-import 'features/authentication/presentation/bloc/regular_sign/authentication_bloc.dart';
+import 'modules/authentication/presentation/pages/splash_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -28,13 +24,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-      providers: [
-        BlocProvider(create: (_) => di.sl<NowPlayingMoviesBloc>()),
-        BlocProvider(create: (_) => di.sl<CachingUserDataBloc>()),
-        BlocProvider(create: (_) => di.sl<PhoneNumberSignBloc>()),
-        BlocProvider(create: (_) => di.sl<AuthenticationBloc>()),
-        BlocProvider(create: (_) => di.sl<SocialSignBloc>()),
-      ],
+      providers: BlocProviders.blocProviders,
       child: Sizer(
         builder: (context, orientation, deviceType) => MaterialApp(
           debugShowCheckedModeBanner: false,
